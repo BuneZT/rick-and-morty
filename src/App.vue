@@ -1,0 +1,55 @@
+<template>
+  <div id="app">
+    <notification></notification>
+    <router-view />
+
+    <confirm
+      v-if="confirm"
+      close-button="Anuluj"
+      submit-button="Potwierdź"
+      :show="showConfirm"
+      :show-close-button="confirm.showCloseButton"
+      :title="confirm.title"
+      :description="confirm.description"
+      @submit="onConfirmSubmit()"
+      @cancel="onConfirmCancel"
+    />
+  </div>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+
+import Notification from '@/components/layout/Notification';
+import Confirm from '@/components/dialog/Confirm';
+
+export default {
+  components: { Notification, Confirm },
+  data() {
+    return {
+      showConfirm: false
+    };
+  },
+  methods: {
+    onConfirmSubmit() {
+      this.confirm.onSuccess();
+      this.showConfirm = false;
+    },
+    onConfirmCancel() {
+      this.showConfirm = false;
+    }
+  },
+  computed: {
+    ...mapState({
+      confirm: state => state.confirm.confirm
+    })
+  },
+  watch: {
+    confirm(to, from) {
+      if (to) {
+        this.showConfirm = true;
+      }
+    }
+  }
+};
+</script>

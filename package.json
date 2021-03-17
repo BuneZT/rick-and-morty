@@ -1,0 +1,65 @@
+{
+  "name": "rick-and-morty",
+  "version": "1.0.0",
+  "description": "Rick and Morty przegląd postaci",
+  "main": "index.js",
+  "scripts": {
+    "debug": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "serve:develop": "vue-cli-service serve --mode develop",
+    "build": "vue-cli-service build",
+    "build:develop": "vue-cli-service build --mode develop",
+    "lint": "vue-cli-service lint",
+    "test": "vue-cli-service test:unit",
+    "docs:gen": "vuese gen --outDir=./dist/docs",
+    "docs:serve": "vuese gen  --outDir=./dist/docs/website && cd dist/docs && vuese serve --open",
+    "docs:preview": "vuese preview"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "vue",
+    "core",
+    "template"
+  ],
+  "author": "Marcin Żmuda-Trzebiatowski",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@mdi/font": "^3.7.95",
+    "@types/graphql": "^14.2.2",
+    "apollo-boost": "^0.4.3",
+    "graphql": "^14.4.1",
+    "json-to-graphql-query": "^1.9.0",
+    "moment": "^2.24.0",
+    "vue": "^2.6.10",
+    "vue-apollo": "^3.0.0-rc.1",
+    "vue-loading-overlay": "^3.2.0",
+    "vue-moment": "^4.0.0",
+    "vue-router": "^3.0.6",
+    "vuetify": "^2.3.10",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.10",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-typescript": "^3.8.1",
+    "@vue/cli-service": "^3.8.4",
+    "@vuese/cli": "^2.4.2",
+    "babel-core": "^6.26.3",
+    "eslint": "^7.10.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vuetify": "^1.0.0-beta.7",
+    "typescript": "^3.0.0",
+    "vue-cli-plugin-vuetify": "^0.5.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
