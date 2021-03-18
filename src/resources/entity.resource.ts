@@ -2,7 +2,7 @@ import { EntityResourceNames } from '@/interfaces/entityResourceNames';
 import { Filter } from '@/interfaces/filter';
 import { ListResponse } from '@/interfaces/list';
 import { VariableType } from 'json-to-graphql-query';
-import { StateFilterArgs, StateFilterVariables } from './queryVariables/filters';
+import { FilterArgs } from './queryVariables/filters';
 import { Resource } from './resource';
 
 /**
@@ -32,7 +32,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * @protected
    * @memberof EntityResource
    */
-  protected listVariables: any = StateFilterVariables;
+  protected listVariables: any;
 
   /**
    * Argumenty zapytania o listę
@@ -40,7 +40,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * @protected
    * @memberof EntityResource
    */
-  protected listArgs: any = StateFilterArgs;
+  protected listArgs: any = FilterArgs;
 
   /**
    * Pola zapytania o listę
@@ -76,16 +76,16 @@ export abstract class EntityResource<EntityType> extends Resource {
         }
       }
     });
-    return this.query({ query, variables: { filters } }, this.listQueryName, preventLoader);
+    return this.query({ query, variables: { ...filters } }, this.listQueryName, preventLoader);
   }
 
-  constructor({ entityName, listName = entityName + 's' }: EntityResourceNames) {
+  constructor({ entityName, listName = entityName + 's', filterName }: EntityResourceNames) {
     super();
     this.entityName = entityName;
     this.listQueryName = listName;
-    this.listArgs = { page: new VariableType('page') };
     this.listVariables = {
-      page: 'Int'
+      page: 'Int',
+      filter: filterName || `Filter${entityName.charAt(0).toUpperCase() + entityName.substr(1)}`
     };
   }
 }

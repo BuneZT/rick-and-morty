@@ -19,5 +19,5 @@ export interface Filter {
    * @type {number}
    * @memberof Filter
    */
-  fliter?: any;
+  filter?: any;
 }

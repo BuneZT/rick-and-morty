@@ -83,7 +83,7 @@ export class EntityModule<
      * @param filters filtry listy
      */
     list: async (context: any, filters: Filter): Promise<void> => {
-      const { results, info } = await this.resource.list({ page: 1 });
+      const { results, info } = await this.resource.list({ page: 2, filter: { name: 'Rick' } });
       context.commit('saveList', results);
       context.commit('saveCount', info.count);
     }

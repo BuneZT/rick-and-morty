@@ -1,3 +1,5 @@
+import { Info } from './info';
+
 /**
  * Interfejs odpowiedzi serwera zawierjącej listy
  *
@@ -20,5 +22,5 @@ export interface ListResponse<T> {
    * @type {number}
    * @memberof ListResponse
    */
-  info: any;
+  info: Info;
 }

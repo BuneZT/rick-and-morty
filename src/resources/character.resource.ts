@@ -1,5 +1,6 @@
 import { EntityResource } from './entity.resource';
 import { Character } from '@/interfaces/character';
+import { VariableType } from 'json-to-graphql-query';
 
 /**
  * Resource postaci

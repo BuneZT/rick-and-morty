@@ -13,13 +13,7 @@ export default {
   components: { ComponentTable },
   mixins: [
     listMixin('character', {
-      deleted: 'Usunięto',
-      deleteError: 'Nie udało się usunąć',
-      getError: 'Błąd podczas pobierania encji',
-      added: 'Dodano',
-      addError: 'Błąd podczas dodawania',
-      updated: 'Zaktualizowano',
-      updateError: 'Błąd przy aktualizacji'
+      listError: 'An error occurred while downloading characters.'
     })
   ],
 
