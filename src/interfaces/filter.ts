@@ -6,42 +6,18 @@
  */
 export interface Filter {
   /**
-   * Liczba elementów do pobrania
+   * Strona
    *
    * @type {number}
    * @memberof Filter
    */
-  count?: number;
+  page?: number;
 
   /**
-   * Pierwszy element do pobrania
+   * Filtry
    *
    * @type {number}
    * @memberof Filter
    */
-  start?: number;
-
-  /**
-   * Wyszukiwana fraza
-   *
-   * @type {string}
-   * @memberof Filter
-   */
-  search?: string;
-
-  /**
-   * Pole po którym dane mają być sortowane
-   *
-   * @type {string}
-   * @memberof Filter
-   */
-  order?: string;
-
-  /**
-   * Czy sortować malejąco
-   *
-   * @type {boolean}
-   * @memberof Filter
-   */
-  desc?: boolean;
+  fliter?: any;
 }

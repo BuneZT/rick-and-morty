@@ -12,13 +12,13 @@ export interface ListResponse<T> {
    * @type {T[]}
    * @memberof ListResponse
    */
-  list: T[];
+  results: T[];
 
   /**
-   * Całkowita liczba znalezionych elementów
+   * Informacje o liście
    *
    * @type {number}
    * @memberof ListResponse
    */
-  count: number;
+  info: any;
 }

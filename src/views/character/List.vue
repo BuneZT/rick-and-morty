@@ -1,12 +1,6 @@
 <template>
   <div>
-    <component-table
-      :items="list"
-      :headers="headers"
-      :actions="actions"
-      :sort-by="['admissionDate']"
-      :sort-desc="[true]"
-    />
+    <component-table :items="list" :headers="headers" :actions="actions" />
   </div>
 </template>
 
@@ -18,7 +12,7 @@ import { DEFAULT_TABLE_ACTIONS } from '@/constants';
 export default {
   components: { ComponentTable },
   mixins: [
-    listMixin('application', {
+    listMixin('character', {
       deleted: 'Usunięto',
       deleteError: 'Nie udało się usunąć',
       getError: 'Błąd podczas pobierania encji',
@@ -31,7 +25,12 @@ export default {
 
   data() {
     return {
-      headers: [{ text: 'Numer ', value: 'id' }],
+      headers: [
+        { text: 'Character ID', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'Gender', value: 'gender' },
+        { text: 'Species', value: 'species' }
+      ],
       actions: DEFAULT_TABLE_ACTIONS
     };
   }

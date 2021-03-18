@@ -20,28 +20,4 @@ export interface EntityResourceNames {
    * @memberof EntityResourceNames
    */
   listName?: string;
-
-  /**
-   * Nazwa akcji do dodania encji
-   *
-   * @type {string}
-   * @memberof EntityResourceNames
-   */
-  addMutationName?: string;
-
-  /**
-   * Nazwa akcji do aktualizacji encji
-   *
-   * @type {string}
-   * @memberof EntityResourceNames
-   */
-  updateMutationName?: string;
-
-  /**
-   * Nazwa akcji do usunięcia encji
-   *
-   * @type {string}
-   * @memberof EntityResourceNames
-   */
-  deleteMutationName?: string;
 }

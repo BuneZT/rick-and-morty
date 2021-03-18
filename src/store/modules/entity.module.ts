@@ -17,9 +17,7 @@ export class EntityModule<
    */
   public state: EntityModuleState<EntityType> = {
     list: [],
-    count: 0,
-    data: undefined,
-    id: undefined
+    count: 0
   };
 
   public mutations: Dictionary<(...args: any[]) => void> = {
@@ -58,34 +56,6 @@ export class EntityModule<
       localState.count -= 1;
     },
     /**
-     * Dodaje encję do listy
-     *
-     * @param localState stan lokalny
-     * @param entity encja
-     */
-    add(localState: EntityModuleState<EntityType>, entity: EntityType): void {
-      localState.list.unshift(entity);
-    },
-    /**
-     * Usuwa encję z listy
-     *
-     * @param localState stan lokalny
-     * @param id identyfikator encji
-     */
-    remove(localState: EntityModuleState<EntityType>, id: number): void {
-      localState.list.splice(localState.list.findIndex((item: EntityType) => item.id === id), 1);
-    },
-    /**
-     * Aktualizuje encję
-     *
-     * @param localState stan lokalny
-     * @param entity encja
-     */
-    update(localState: any, entity: EntityType): void {
-      const index = localState.list.findIndex((item: EntityType) => item.id === entity.id);
-      localState.list.splice(index, 1, entity);
-    },
-    /**
      * Zapisuje identyfikator encji do store
      *
      * @param localState stan lokalny
@@ -113,53 +83,9 @@ export class EntityModule<
      * @param filters filtry listy
      */
     list: async (context: any, filters: Filter): Promise<void> => {
-      const { list, count } = await this.resource.list(filters);
-      context.commit('saveList', list);
-      context.commit('saveCount', count);
-    },
-    /**
-     * Pobiera encję
-     *
-     * @param context context
-     * @param id identyifkator encji
-     */
-    get: async (context: any, id?: number): Promise<EntityType> => {
-      const entity = await this.resource.get(id || context.state.id);
-      context.commit('setEntity', entity);
-      return entity;
-    },
-    /**
-     * Dodaje encję
-     *
-     * @param context context
-     * @param data dane do wysłania do API
-     */
-    add: async (context: any, data: any): Promise<void> => {
-      data.id = await this.resource.add(data);
-      context.commit('add', data);
-      context.commit('incrementCount');
-    },
-    /**
-     * Usuwa encję
-     *
-     * @param context context
-     * @param id identyfikator encji
-     */
-    remove: async (context: any, id: number): Promise<void> => {
-      await this.resource.delete(id);
-      context.commit('remove', id);
-      context.commit('decrementCount');
-    },
-    /**
-     * Aktualizuje encję
-     *
-     * @param context context
-     * @param data dane encji
-     */
-    update: async (context: any, data: EntityType): Promise<void> => {
-      await this.resource.update(data.id as number, data);
-      context.commit('update', data);
-      context.commit('setEntity', data);
+      const { results, info } = await this.resource.list({ page: 1 });
+      context.commit('saveList', results);
+      context.commit('saveCount', info.count);
     }
   };
 

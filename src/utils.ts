@@ -1,4 +1,5 @@
 import { Route } from 'vue-router';
+
 import { Filter } from './interfaces/filter';
 
 /**
@@ -63,22 +64,6 @@ export function tryParseDate(...values: any[]): Date | undefined {
  */
 export function baseFilters(route: Route): Filter {
   const filters: Filter = {};
-
-  filters.count = tryParseInt(route.query.count) || 10;
-
-  if (route.query.search) {
-    filters.search = route.query.search as string;
-  }
-
-  if (route.query.page) {
-    const page = (tryParseInt(route.query.page) as number) - 1;
-    filters.start = page * filters.count;
-  }
-
-  if (route.query.order) {
-    filters.order = route.query.order as string;
-    filters.desc = tryParseBoolean(route.query.desc);
-  }
 
   return filters;
 }
