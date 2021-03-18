@@ -93,5 +93,3 @@ export default {
   padding: 0 8px !important;
 }
 </style>
-
-watch()

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <component-table :items="list" :headers="headers" :actions="actions" :pageCount="pages" />
-  </div>
+  <component-table :items="list" :headers="headers" :actions="actions" :pageCount="pages" />
 </template>
 
 <script>

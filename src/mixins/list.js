@@ -30,39 +30,14 @@ export function listMixin(moduleName, messages) {
     },
     methods: {
       /**
-       * Otwiera okienko z potwierdzeniem usunięcia
-       *
-       * @param {*} id
-       */
-      showDeleteDialog(object) {
-        this.$store.dispatch('showConfirm', {
-          title: 'Potwierdź usunięcie',
-          description: '',
-          onSuccess: () => this.remove(object.id)
-        });
-      },
-
-      /**
-       * Usuwa encję
-       *
-       * @param {*} id
-       */
-      remove(id) {
-        this.$store
-          .dispatch(`${moduleName}/remove`, id)
-          .then(() => this.notifySuccess(messages.deleted))
-          .catch(err => this.notifyError(messages.deleteError));
-      },
-
-      /**
        * Przeładowuje listę
        *
        * @param {*} pagination
        */
       reloadList(pagination) {
-        this.$store
-          .dispatch(`${moduleName}/list`, pagination)
-          .catch(err => store.dispatch('notifyError', { title: messages.listError }));
+        this.$store.dispatch(`${moduleName}/list`, pagination).catch(err => {
+          store.dispatch('notifyError', { title: messages.listError });
+        });
       }
     },
     computed: {
@@ -97,7 +72,8 @@ export function listMixin(moduleName, messages) {
    * @returns
    */
   function filters(route) {
-    const { page } = route.query;
-    return { page: tryParseInt(page) || 1 };
+    const page = tryParseInt(route.query.page) || 1;
+    const filter = { ...route.query, page: undefined };
+    return { filter, page };
   }
 }

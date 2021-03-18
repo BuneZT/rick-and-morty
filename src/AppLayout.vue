@@ -1,7 +1,16 @@
 <template>
   <v-app>
-    <layout-header />
-    <layout-body />
+    <v-main>
+      <v-content app style="padding-top: 100px;">
+        <v-fade-transition mode="out-in">
+          <v-container>
+            <layout-header />
+
+            <layout-body />
+          </v-container>
+        </v-fade-transition>
+      </v-content>
+    </v-main>
   </v-app>
 </template>
 <script>

@@ -73,15 +73,6 @@ export class EntityModule<
      */
     setId(localState: any, id: number): void {
       localState.id = id;
-    },
-    /**
-     * Zapisuje encję do store
-     *
-     * @param localState stan lokalny
-     * @param entity encja
-     */
-    setEntity(localState: any, entity: EntityType): void {
-      localState.data = { ...entity };
     }
   };
 
