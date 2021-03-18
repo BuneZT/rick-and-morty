@@ -11,7 +11,8 @@ export default {
   components: { ComponentTable },
   mixins: [
     listMixin('character', {
-      listError: 'An error occurred while downloading characters.'
+      listError: 'An error occurred while downloading characters.',
+      listNotFound: 'Character not found'
     })
   ],
 

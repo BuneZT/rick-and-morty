@@ -15,6 +15,7 @@ import { tryParseInt } from '@/utils';
  * @param {*} moduleName - nazwa modułu store
  * @param {Object} messages - obiekt z wiadomościami do wyświetlenia po wykonaniu akcji i w przypadku niepowodzenia
  * @param {string} messages.listError - wiadomość w przypadku niepowodzenia przy pobieraniu listy
+ * @param {string} messages.listNotFound - wiadomość w przypadku nie znalezienia listy
  * @returns {Object} mixin
  */
 export function listMixin(moduleName, messages) {
@@ -35,9 +36,11 @@ export function listMixin(moduleName, messages) {
        * @param {*} pagination
        */
       reloadList(pagination) {
-        this.$store.dispatch(`${moduleName}/list`, pagination).catch(err => {
-          store.dispatch('notifyError', { title: messages.listError });
-        });
+        this.$store.dispatch(`${moduleName}/list`, pagination).catch(err =>
+          store.dispatch('notifyError', {
+            title: err.message.includes('404') ? messages.listNotFound : messages.listError
+          })
+        );
       }
     },
     computed: {
@@ -62,7 +65,11 @@ export function listMixin(moduleName, messages) {
     store
       .dispatch(`${moduleName}/list`, filters(to))
       .then(() => next())
-      .catch(err => store.dispatch('notifyError', { title: messages.listError }));
+      .catch(err =>
+        store.dispatch('notifyError', {
+          title: err.message.includes('404') ? messages.listNotFound : messages.listError
+        })
+      );
   }
 
   /**
