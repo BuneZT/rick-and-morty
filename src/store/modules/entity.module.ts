@@ -17,7 +17,8 @@ export class EntityModule<
    */
   public state: EntityModuleState<EntityType> = {
     list: [],
-    count: 0
+    count: 0,
+    pages: 0
   };
 
   public mutations: Dictionary<(...args: any[]) => void> = {
@@ -36,8 +37,17 @@ export class EntityModule<
      * @param localState stan lokalny
      * @param count liczba encji
      */
-    saveCount(localState: EntityModuleState<EntityType>, count: any): void {
+    saveCount(localState: EntityModuleState<EntityType>, count: number): void {
       localState.count = count;
+    },
+    /**
+     * Zapisuje liczbę stron
+     *
+     * @param {EntityModuleState<EntityType>} localState
+     * @param {number} pages
+     */
+    savePages(localState: EntityModuleState<EntityType>, pages: number): void {
+      localState.pages = pages;
     },
     /**
      * Podnosi liczbę encji o 1
@@ -83,9 +93,10 @@ export class EntityModule<
      * @param filters filtry listy
      */
     list: async (context: any, filters: Filter): Promise<void> => {
-      const { results, info } = await this.resource.list({ page: 2, filter: { name: 'Rick' } });
+      const { results, info } = await this.resource.list(filters);
       context.commit('saveList', results);
       context.commit('saveCount', info.count);
+      context.commit('savePages', info.pages);
     }
   };
 

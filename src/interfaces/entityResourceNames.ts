@@ -14,14 +14,6 @@ export interface EntityResourceNames {
   entityName: string;
 
   /**
-   * Filtry listy
-   *
-   * @type {object}
-   * @memberof EntityResourceNames
-   */
-  filterVariables: object;
-
-  /**
    * Nazwa akcji do pobrania listy encji
    *
    * @type {string}

@@ -1,31 +1,28 @@
 <template>
-  <v-data-table
-    class="elevation-1"
-    item-key="id"
-    :search="search"
-    :sort-by="sortBy"
-    :sort-desc="sortDesc"
-    :headers="headers"
-    :items="items"
-    :items-per-page="5"
-  >
-    <!-- eslint-disable vue/no-v-html -->
+  <div>
+    <v-data-table
+      class="elevation-1"
+      item-key="id"
+      hide-default-footer
+      :sort-by="sortBy"
+      :sort-desc="sortDesc"
+      :headers="headers"
+      :items="items"
+      :items-per-page="20"
+    >
+      <template v-slot:item.actions="{ item }">
+        <actions :object="item" :actions="actions" v-on="$listeners" />
+      </template>
+      <!--eslint-enable-->
+    </v-data-table>
 
-    <template v-slot:top>
-      <div>
-        <v-text-field v-model="search" class="ml-2" label="Szukaj" style="width: 20%" />
-      </div>
-    </template>
-
-    <template v-slot:item.actions="{ item }">
-      <actions :object="item" :actions="actions" v-on="$listeners" />
-    </template>
-    <!--eslint-enable-->
-  </v-data-table>
+    <div class="pt-2">
+      <v-pagination v-model="page" :total-visible="6" :length="pageCount" />
+    </div>
+  </div>
 </template>
 
 <script>
-import { tryParseBoolean } from '@/utils';
 import { tryParseInt } from '@/utils';
 import Actions from './table/Actions';
 
@@ -47,6 +44,11 @@ export default {
       type: Array,
       required: true
     },
+    // Liczba stron
+    pageCount: {
+      type: Number,
+      required: true
+    },
     sortBy: {
       type: Array,
       required: false
@@ -59,18 +61,23 @@ export default {
     actions: {
       type: Array,
       required: false
-    },
-    showAddButton: {
-      type: Boolean,
-      required: false,
-      default: true
     }
   },
   components: { Actions },
   data() {
     return {
-      search: ''
+      page: tryParseInt(this.$route.query.page) || 1
     };
+  },
+  watch: {
+    page(value) {
+      const nextRoute = {
+        name: this.$route.name,
+        params: this.$route.params,
+        query: { ...this.$route.query, page: value }
+      };
+      this.$router.replace(nextRoute);
+    }
   }
 };
 </script>
@@ -86,3 +93,5 @@ export default {
   padding: 0 8px !important;
 }
 </style>
+
+watch()

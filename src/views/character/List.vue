@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component-table :items="list" :headers="headers" :actions="actions" />
+    <component-table :items="list" :headers="headers" :actions="actions" :pageCount="pages" />
   </div>
 </template>
 

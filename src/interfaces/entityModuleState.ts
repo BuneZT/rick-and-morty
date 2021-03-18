@@ -23,18 +23,10 @@ export interface EntityModuleState<EntityType> {
   count: number;
 
   /**
-   * Identyfikator encji
+   * Liczba stron
    *
    * @type {number}
    * @memberof EntityModuleState
    */
-  id?: number;
-
-  /**
-   * Dane encji
-   *
-   * @type {EntityType}
-   * @memberof EntityModuleState
-   */
-  data?: EntityType | any;
+  pages: number;
 }
