@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   props: {
@@ -56,6 +56,8 @@ export default {
     };
   },
   methods: {
+    // @vuese
+    // Chowa notyfikacje
     hideNotification() {
       this.$store.dispatch('hideNotification');
     }

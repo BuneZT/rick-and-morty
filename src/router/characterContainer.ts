@@ -1,7 +1,7 @@
 import { RouteConfig } from 'vue-router';
 
-import { charactersRoute } from './characters.route';
 import RouterView from '@/components/layout/RouterView.vue';
+import { charactersRoute } from './characters.route';
 
 export const characterContainerRoute: RouteConfig = {
   path: 'characters',

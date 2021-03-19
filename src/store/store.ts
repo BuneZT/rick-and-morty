@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import notification from './modules/notification.module';
-import system from './modules/system.module';
 import character from './modules/character.module';
 import confirm from './modules/confirm.module';
+import notification from './modules/notification.module';
+import system from './modules/system.module';
 
 Vue.use(Vuex);
 // Create a new store

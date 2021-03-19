@@ -1,6 +1,6 @@
-import { EntityModule } from './entity.module';
 import { Character } from '@/interfaces/character';
 import { CharacterResource, characterResource } from '@/resources/character.resource';
+import { EntityModule } from './entity.module';
 
 /**
  * Moduł postaci

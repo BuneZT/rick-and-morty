@@ -4,15 +4,15 @@
 
 <script>
 import ComponentTable from '@/components/Table';
-import { listMixin } from '@/mixins/list';
 import { DEFAULT_TABLE_ACTIONS } from '@/constants';
+import { listMixin } from '@/mixins/list';
 
 export default {
   components: { ComponentTable },
   mixins: [
     listMixin('character', {
       listError: 'An error occurred while downloading characters.',
-      listNotFound: 'Character not found'
+      listNotFound: 'Characters not found'
     })
   ],
 

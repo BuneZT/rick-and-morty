@@ -20,8 +20,8 @@
 <script>
 import { mapState } from 'vuex';
 
-import Notification from '@/components/layout/Notification';
 import Confirm from '@/components/dialog/Confirm';
+import Notification from '@/components/layout/Notification';
 
 export default {
   components: { Notification, Confirm },
