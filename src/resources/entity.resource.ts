@@ -79,6 +79,27 @@ export abstract class EntityResource<EntityType> extends Resource {
     return this.query({ query, variables: { ...filters } }, this.listQueryName, preventLoader);
   }
 
+  /**
+   * Pobiera liste encji po id
+   *
+   * @param {number[]} ids
+   * @param {boolean} [preventLoader=false]
+   * @return {*}  {Promise<EntityType[]>}
+   * @memberof EntityResource
+   */
+  public listByIds(ids: number[], preventLoader = false): Promise<EntityType[]> {
+    const query = this.prepareOptions({
+      query: {
+        __variables: { ids: '[ID!]!' },
+        [this.listQueryName]: {
+          __args: { ids: new VariableType('ids') },
+          ...this.listFields
+        }
+      }
+    });
+    return this.query({ query, variables: { ids } }, this.listQueryName, preventLoader);
+  }
+
   constructor({ entityName, listName = entityName + 's', filterName }: EntityResourceNames) {
     super();
     this.entityName = entityName;

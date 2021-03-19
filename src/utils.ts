@@ -1,6 +1,4 @@
-import { Route } from 'vue-router';
-
-import { Filter } from './interfaces/filter';
+import { SessionStorage } from './enums/sessionStorage.enum';
 
 /**
  * Parsuje kolejne wartości, zwracając pierwszą, której można przypisać wartość typu bool
@@ -56,14 +54,14 @@ export function tryParseDate(...values: any[]): Date | undefined {
 }
 
 /**
- * Bazowe filtry na podstawie query
+ * Pobiera liste ulubionych bochaterów
  *
  * @export
- * @param {Route} route
- * @returns {Filter}
+ * @return {*}
  */
-export function baseFilters(route: Route): Filter {
-  const filters: Filter = {};
-
-  return filters;
+export function getFavorites(): number[] | undefined {
+  return localStorage
+    .getItem(SessionStorage.FAVORITE_CHARACTERS)
+    ?.split(',')
+    .map(item => tryParseInt(item) as number);
 }

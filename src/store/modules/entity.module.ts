@@ -73,6 +73,18 @@ export class EntityModule<
      */
     setId(localState: any, id: number): void {
       localState.id = id;
+    },
+    /**
+     * Usuwa encję z listy
+     *
+     * @param localState stan lokalny
+     * @param id identyfikator encji
+     */
+    remove(localState: EntityModuleState<EntityType>, id: number): void {
+      localState.list.splice(
+        localState.list.findIndex((item: EntityType) => item.id === id),
+        1
+      );
     }
   };
 
@@ -88,6 +100,29 @@ export class EntityModule<
       context.commit('saveList', results);
       context.commit('saveCount', info.count);
       context.commit('savePages', info.pages);
+    },
+
+    /**
+     * Pobiera listę encji po id
+     *
+     * @param {*} context
+     * @param {number[]} ids
+     * @return {*}  {Promise<void>}
+     */
+    listByIds: async (context: any, ids: number[]): Promise<void> => {
+      const list = await this.resource.listByIds(ids);
+      context.commit('saveList', list);
+      context.commit('saveCount', list.length);
+    },
+    /**
+     * Usuwa encję
+     *
+     * @param context context
+     * @param id identyfikator encji
+     */
+    remove: async (context: any, id: number): Promise<void> => {
+      context.commit('remove', id);
+      context.commit('decrementCount');
     }
   };
 

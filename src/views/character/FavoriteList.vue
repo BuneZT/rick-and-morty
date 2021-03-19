@@ -17,7 +17,8 @@
 <script>
 import ComponentTable from '@/components/Table';
 import { DEFAULT_TABLE_ACTIONS } from '@/constants';
-import { listMixin } from '@/mixins/list';
+import { listByIdsMixin } from '@/mixins/listByIds';
+import { getFavorites } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
 
 // @vuese
@@ -33,10 +34,14 @@ export default {
   },
   components: { ComponentTable, Tabs },
   mixins: [
-    listMixin('character', {
-      listError: 'An error occurred while downloading characters.',
-      listNotFound: 'Characters not found'
-    })
+    listByIdsMixin(
+      'character',
+      {
+        listError: 'An error occurred while downloading characters.',
+        listNotFound: 'Characters not found'
+      },
+      getFavorites()
+    )
   ],
   data() {
     return {

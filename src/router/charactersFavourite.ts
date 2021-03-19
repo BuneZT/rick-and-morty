@@ -9,7 +9,7 @@ export const charactersFavouriteRoute: RouteConfig = {
   props: {
     tabs: [
       { name: 'All Characters', routeName: 'characters' },
-      { name: 'Favorites', routeName: 'charactersFavourite' }
+      { name: 'Favourites', routeName: 'charactersFavourite' }
     ]
   }
 };

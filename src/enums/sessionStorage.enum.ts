@@ -1,3 +1,3 @@
 export enum SessionStorage {
-  TOKEN = 'token'
+  FAVORITE_CHARACTERS = 'FAVORITE_CHARACTERS'
 }
