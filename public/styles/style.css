@@ -1,0 +1,9 @@
+.data-table-word-break {
+  white-space: normal;
+  word-break: break-all;
+}
+
+.v-datatable td,
+.v-datatable th {
+  padding: 0 8px !important;
+}

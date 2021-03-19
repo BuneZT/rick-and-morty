@@ -13,7 +13,7 @@
           :headers="headers"
           :actions="actions"
           :pageCount="pages"
-          @addFavorite="addFavorite"
+          @addFavorite="addFavoriteDialog"
         />
       </v-col>
     </v-row>
@@ -59,10 +59,19 @@ export default {
   },
   methods: {
     // @vuese
+    // Otwiera dialog
+    addFavoriteDialog(object) {
+      this.$store.dispatch('showConfirm', {
+        title: 'Add this character to your favorites?',
+        description: '',
+        onSuccess: () => this.addFavorite(object.id)
+      });
+    },
+    // @vuese
     // Dodaje do listy ulubionych
-    addFavorite(objcet) {
+    addFavorite(id) {
       const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
-      favorites.push(objcet.id.toString());
+      favorites.push(id.toString());
       localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
     }
   }

@@ -4,6 +4,7 @@
       class="elevation-0"
       item-key="id"
       hide-default-footer
+      :page.sync="page"
       :sort-by="sortBy"
       :sort-desc="sortDesc"
       :headers="headers"
@@ -27,8 +28,8 @@ import Actions from './table/Actions';
 
 /**
  * @vuese
- * @group Components
- * Tabela oparta o paginację z api
+ * @group Components/Material
+ * Tabela oparta o lokalną paginację
  */
 export default {
   props: {
@@ -38,10 +39,6 @@ export default {
     },
     items: {
       type: Array,
-      required: true
-    },
-    pageCount: {
-      type: Number,
       required: true
     },
     sortBy: {
@@ -67,14 +64,9 @@ export default {
       page: tryParseInt(this.$route.query.page) || 1
     };
   },
-  watch: {
-    page(value) {
-      const nextRoute = {
-        name: this.$route.name,
-        params: this.$route.params,
-        query: { ...this.$route.query, page: value }
-      };
-      this.$router.replace(nextRoute);
+  computed: {
+    pageCount() {
+      return Math.ceil(this.items.length / this.itemsPerPage);
     }
   }
 };

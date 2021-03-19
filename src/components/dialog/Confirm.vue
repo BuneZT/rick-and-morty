@@ -1,8 +1,8 @@
 <template>
   <div class="text-center">
     <v-dialog v-model="show" width="500">
-      <v-card>
-        <v-card-title class="headline green lighten-1">
+      <v-card dark color="primary">
+        <v-card-title>
           {{ title }}
         </v-card-title>
 
@@ -15,11 +15,11 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn v-if="showCloseButton" color="green darken-1" text @click="onCancel">
+          <v-btn v-if="showCloseButton" text @click="onCancel">
             {{ closeButton }}
           </v-btn>
 
-          <v-btn color="green darken-1" text @click="onSubmit">
+          <v-btn text @click="onSubmit">
             {{ submitButton }}
           </v-btn>
         </v-card-actions>

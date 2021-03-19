@@ -5,8 +5,8 @@
 
     <confirm
       v-if="confirm"
-      close-button="Anuluj"
-      submit-button="Potwierdź"
+      close-button="Cancel"
+      submit-button="Confirm"
       :show="showConfirm"
       :show-close-button="confirm.showCloseButton"
       :title="confirm.title"

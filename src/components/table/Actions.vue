@@ -4,10 +4,10 @@
       <v-tooltip :key="action.event + '_' + index" top>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            small
             :class="action.class"
             :color="actionColor(action)"
-            icon
-            text
+            :outlined="action.outlined"
             v-bind="attrs"
             v-on="on"
             @click.prevent="$emit(action.event, object)"

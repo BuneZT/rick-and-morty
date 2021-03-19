@@ -1,15 +1,13 @@
 <template>
   <v-app>
-    <v-main>
-      <v-content app>
-        <v-fade-transition mode="out-in">
-          <v-container>
-            <layout-header />
+    <v-main app>
+      <v-fade-transition mode="out-in">
+        <v-container>
+          <layout-header />
 
-            <layout-body />
-          </v-container>
-        </v-fade-transition>
-      </v-content>
+          <layout-body />
+        </v-container>
+      </v-fade-transition>
     </v-main>
   </v-app>
 </template>

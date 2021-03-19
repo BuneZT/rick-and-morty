@@ -8,7 +8,12 @@
 
     <v-row>
       <v-col>
-        <component-table :items="list" :headers="headers" :actions="actions" :pageCount="pages" />
+        <component-local-pagination-table
+          :items="list"
+          :headers="headers"
+          :actions="actions"
+          @removeFavorite="removeFromFavoriteDialog"
+        />
       </v-col>
     </v-row>
   </div>
@@ -17,11 +22,13 @@
 <script>
 import { mapState } from 'vuex';
 
-import ComponentTable from '@/components/Table';
+import ComponentLocalPaginationTable from '@/components/LocalPaginationTable';
 import { REMOVE_FAVORITE } from '@/constants';
 import { listByIdsMixin } from '@/mixins/listByIds';
+import store from '@/store/store';
 import { getFavorites } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
+import { SessionStorage } from '../../enums/sessionStorage.enum';
 
 // @vuese
 // Ulubione postacie
@@ -34,7 +41,7 @@ export default {
       default: () => []
     }
   },
-  components: { ComponentTable, Tabs },
+  components: { ComponentLocalPaginationTable, Tabs },
   mixins: [
     listByIdsMixin(
       'character/favorites',
@@ -52,7 +59,7 @@ export default {
         { text: 'Name', value: 'name' },
         { text: 'Gender', value: 'gender' },
         { text: 'Species', value: 'species' },
-        { text: 'Add To Favorites', value: 'actions', sortable: false }
+        { text: 'Remove From Favorites', value: 'actions', sortable: false }
       ],
       actions: [REMOVE_FAVORITE]
     };
@@ -60,6 +67,25 @@ export default {
   computed: mapState({
     list: state => state.character.favorites.list,
     count: state => state.character.favorites.count
-  })
+  }),
+  methods: {
+    // @vuese
+    // Otwiera dialog
+    removeFromFavoriteDialog(object) {
+      this.$store.dispatch('showConfirm', {
+        title: 'Add this character to your favorites?',
+        description: '',
+        onSuccess: () => this.removeFavorite(object.id)
+      });
+    },
+    // @vuese
+    // Usuwa z listy ulubionych
+    removeFavorite(id) {
+      const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
+      favorites.splice(favorites.indexOf(id.toString()), 1);
+      localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
+      store.dispatch('character/favorites/remove', id);
+    }
+  }
 };
 </script>

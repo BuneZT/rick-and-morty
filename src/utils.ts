@@ -65,15 +65,3 @@ export function getFavorites(): number[] | undefined {
     ?.split(',')
     .map(item => tryParseInt(item) as number);
 }
-
-/**
- * Usuwa z listy ulubionych
- *
- * @export
- * @param {number} id
- */
-export function removeFromFavorites(id: number) {
-  const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
-  favorites.splice(favorites.indexOf(id.toString()), 1);
-  localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
-}

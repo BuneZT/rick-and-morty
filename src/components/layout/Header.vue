@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="2">
-        <v-img :src="imgSrc" />
+      <v-col sm="12" md="2">
+        <v-img contain :src="imgSrc" />
       </v-col>
 
       <v-col>
