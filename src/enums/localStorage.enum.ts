@@ -1,3 +1,3 @@
-export enum SessionStorage {
+export enum LocalStorage {
   FAVORITE_CHARACTERS = 'FAVORITE_CHARACTERS'
 }

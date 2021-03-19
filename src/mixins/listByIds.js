@@ -56,11 +56,4 @@ export function listByIdsMixin(moduleName, messages, ids) {
         })
       );
   }
-
-  /**
-   * Zwraca filtry do wyszukiwarki
-   *
-   * @param {*} route
-   * @returns
-   */
 }

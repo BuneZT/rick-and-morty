@@ -26,9 +26,9 @@ import ComponentLocalPaginationTable from '@/components/LocalPaginationTable';
 import { REMOVE_FAVORITE } from '@/constants';
 import { listByIdsMixin } from '@/mixins/listByIds';
 import store from '@/store/store';
-import { getFavorites } from '@/utils';
+import { getFavorites, findCharacterLastEpisodeName } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
-import { SessionStorage } from '../../enums/sessionStorage.enum';
+import { LocalStorage } from '../../enums/localStorage.enum';
 
 // @vuese
 // Ulubione postacie
@@ -44,7 +44,7 @@ export default {
   components: { ComponentLocalPaginationTable, Tabs },
   mixins: [
     listByIdsMixin(
-      'character/favorites',
+      'character',
       {
         listError: 'An error occurred while downloading characters.',
         listNotFound: 'Characters not found'
@@ -59,21 +59,26 @@ export default {
         { text: 'Name', value: 'name' },
         { text: 'Gender', value: 'gender' },
         { text: 'Species', value: 'species' },
+        { text: 'Last episode', value: 'lastEpisode' },
+
         { text: 'Remove From Favorites', value: 'actions', sortable: false }
       ],
       actions: [REMOVE_FAVORITE]
     };
   },
   computed: mapState({
-    list: state => state.character.favorites.list,
-    count: state => state.character.favorites.count
+    list: state =>
+      state.character.list.map(character => {
+        character.lastEpisode = findCharacterLastEpisodeName(character);
+        return character;
+      })
   }),
   methods: {
     // @vuese
     // Otwiera dialog
     removeFromFavoriteDialog(object) {
       this.$store.dispatch('showConfirm', {
-        title: 'Add this character to your favorites?',
+        title: 'Remove this character from your favorites?',
         description: '',
         onSuccess: () => this.removeFavorite(object.id)
       });
@@ -81,10 +86,10 @@ export default {
     // @vuese
     // Usuwa z listy ulubionych
     removeFavorite(id) {
-      const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
+      const favorites = localStorage.getItem(LocalStorage.FAVORITE_CHARACTERS)?.split(',') || [];
       favorites.splice(favorites.indexOf(id.toString()), 1);
-      localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
-      store.dispatch('character/favorites/remove', id);
+      localStorage.setItem(LocalStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
+      store.dispatch('character/remove', id);
     }
   }
 };

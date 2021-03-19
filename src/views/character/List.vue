@@ -21,14 +21,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import ComponentTable from '@/components/Table';
 import { ADD_FAVORITE } from '@/constants';
 import { listMixin } from '@/mixins/list';
+import { findCharacterLastEpisodeName } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
-import { SessionStorage } from '../../enums/sessionStorage.enum';
+import { LocalStorage } from '../../enums/localStorage.enum';
 
 // @vuese
-// Lista bohaterów
+// Lista postaci
 // @group Character
 export default {
   props: {
@@ -52,11 +55,20 @@ export default {
         { text: 'Name', value: 'name', sortable: false },
         { text: 'Gender', value: 'gender', sortable: false },
         { text: 'Species', value: 'species', sortable: false },
+        { text: 'Last episode', value: 'lastEpisode', sortable: false },
+
         { text: 'Add To Favorites', value: 'actions', sortable: false }
       ],
       actions: [ADD_FAVORITE]
     };
   },
+  computed: mapState({
+    list: state =>
+      state.character.list.map(character => {
+        character.lastEpisode = findCharacterLastEpisodeName(character);
+        return character;
+      })
+  }),
   methods: {
     // @vuese
     // Otwiera dialog
@@ -70,9 +82,9 @@ export default {
     // @vuese
     // Dodaje do listy ulubionych
     addFavorite(id) {
-      const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
+      const favorites = localStorage.getItem(LocalStorage.FAVORITE_CHARACTERS)?.split(',') || [];
       favorites.push(id.toString());
-      localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
+      localStorage.setItem(LocalStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
     }
   }
 };

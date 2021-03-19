@@ -1,4 +1,5 @@
 import { EntityInterface } from './entityInterface';
+import { Episode } from './episode';
 
 /**
  *  Postać
@@ -54,4 +55,12 @@ export interface Character extends EntityInterface {
    * @memberof Character
    */
   image?: string;
+
+  /**
+   * Odcinki w których się pojawił
+   *
+   * @type {Episode[]}
+   * @memberof Character
+   */
+  episode?: Episode[];
 }

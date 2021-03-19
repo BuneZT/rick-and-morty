@@ -13,9 +13,13 @@
       <template v-slot:item.actions="{ item }">
         <actions :object="item" :actions="actions" v-on="$listeners" />
       </template>
+
+      <template v-slot:item.gender="{ item }">
+        <gender :item="item" />
+      </template>
     </v-data-table>
 
-    <div class="pt-2">
+    <div class="pt-2 float-left">
       <v-pagination v-model="page" :total-visible="6" :length="pageCount" />
     </div>
   </div>
@@ -24,6 +28,7 @@
 <script>
 import { tryParseInt } from '@/utils';
 import Actions from './table/Actions';
+import Gender from './table/Gender';
 
 /**
  * @vuese
@@ -61,7 +66,7 @@ export default {
       default: 20
     }
   },
-  components: { Actions },
+  components: { Actions, Gender },
   data() {
     return {
       page: tryParseInt(this.$route.query.page) || 1

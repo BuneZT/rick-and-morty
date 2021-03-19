@@ -14,7 +14,11 @@ export class CharacterResource extends EntityResource<Character> {
     name: true,
     species: true,
     gender: true,
-    image: true
+    image: true,
+    episode: {
+      id: true,
+      name: true
+    }
   };
 
   constructor() {

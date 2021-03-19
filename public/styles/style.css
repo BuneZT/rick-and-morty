@@ -7,3 +7,10 @@
 .v-datatable th {
   padding: 0 8px !important;
 }
+.app {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.v-data-table-header {
+  background-color: rgba(229, 234, 244, 0.25);
+}

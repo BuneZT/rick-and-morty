@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col sm="12" md="2">
-        <v-img contain :src="imgSrc" />
+        <v-img :src="imgSrc" />
       </v-col>
 
       <v-col>

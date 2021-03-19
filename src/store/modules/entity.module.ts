@@ -110,6 +110,12 @@ export class EntityModule<
      * @return {*}  {Promise<void>}
      */
     listByIds: async (context: any, ids: number[]): Promise<void> => {
+      if (!ids.length) {
+        context.commit('saveList', []);
+        context.commit('saveCount', 0);
+        return;
+      }
+
       const list = await this.resource.listByIds(ids);
       context.commit('saveList', list);
       context.commit('saveCount', list.length);
@@ -120,7 +126,7 @@ export class EntityModule<
      * @param context context
      * @param id identyfikator encji
      */
-    remove: async (context: any, id: number): Promise<void> => {
+    remove: (context: any, id: number): void => {
       context.commit('remove', id);
       context.commit('decrementCount');
     }

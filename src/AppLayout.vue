@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-main app>
       <v-fade-transition mode="out-in">
         <v-container>

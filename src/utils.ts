@@ -1,4 +1,5 @@
-import { SessionStorage } from './enums/sessionStorage.enum';
+import { LocalStorage } from './enums/localStorage.enum';
+import { Character } from './interfaces/character';
 
 /**
  * Parsuje kolejne wartości, zwracając pierwszą, której można przypisać wartość typu bool
@@ -54,14 +55,32 @@ export function tryParseDate(...values: any[]): Date | undefined {
 }
 
 /**
- * Pobiera listę ulubionych bohaterów
+ * Pobiera listę ulubionych postaci
  *
  * @export
  * @return {*}
  */
-export function getFavorites(): number[] | undefined {
-  return localStorage
-    .getItem(SessionStorage.FAVORITE_CHARACTERS)
-    ?.split(',')
-    .map(item => tryParseInt(item) as number);
+export function getFavorites(): number[] {
+  console.log(localStorage.getItem(LocalStorage.FAVORITE_CHARACTERS));
+  return (
+    localStorage
+      .getItem(LocalStorage.FAVORITE_CHARACTERS)
+      ?.split(',')
+      .map(item => tryParseInt(item) as number)
+      .filter(item => item) || []
+  );
+}
+
+/**
+ * Znajduje ostatni odcinek postaci
+ * (dla uproszczenia zakładam że zawsze ostatni na liście)
+ *
+ * @export
+ * @param {Character} character
+ */
+export function findCharacterLastEpisodeName(character: Character): String {
+  if (!character.episode?.length) {
+    return 'Empty';
+  }
+  return [...character.episode].pop()?.name || 'Empty';
 }

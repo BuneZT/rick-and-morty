@@ -35,10 +35,6 @@ new Vue({
     },
     icons: {
       iconfont: 'mdi'
-    },
-    lang: {
-      locales: { pl },
-      current: 'pl'
     }
   }),
   render: h => h(App)
