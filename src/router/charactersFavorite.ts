@@ -2,14 +2,14 @@ import { RouteConfig } from 'vue-router';
 
 import CharacterFavoriteList from '@/views/character/FavoriteList.vue';
 
-export const charactersFavouriteRoute: RouteConfig = {
-  path: 'favourite',
+export const charactersFavoriteRoute: RouteConfig = {
+  path: 'favorite',
   component: CharacterFavoriteList,
-  name: 'charactersFavourite',
+  name: 'charactersFavorite',
   props: {
     tabs: [
       { name: 'All Characters', routeName: 'characters' },
-      { name: 'Favourites', routeName: 'charactersFavourite' }
+      { name: 'Favorites', routeName: 'charactersFavorite' }
     ]
   }
 };

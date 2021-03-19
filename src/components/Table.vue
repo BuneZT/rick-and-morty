@@ -1,19 +1,18 @@
 <template>
   <div>
     <v-data-table
-      class="elevation-1"
+      class="elevation-0"
       item-key="id"
       hide-default-footer
       :sort-by="sortBy"
       :sort-desc="sortDesc"
       :headers="headers"
       :items="items"
-      :items-per-page="20"
+      :items-per-page="itemsPerPage"
     >
       <template v-slot:item.actions="{ item }">
         <actions :object="item" :actions="actions" v-on="$listeners" />
       </template>
-      <!--eslint-enable-->
     </v-data-table>
 
     <div class="pt-2">
@@ -33,18 +32,14 @@ import Actions from './table/Actions';
  */
 export default {
   props: {
-    // Obiekty z polami `value` i `text`
     headers: {
       type: Array,
       required: true
     },
-    // Lista obiektów do wyświetlenia w tabeli
-    // Wyświetlane będą pola z `value` nagłówków
     items: {
       type: Array,
       required: true
     },
-    // Liczba stron
     pageCount: {
       type: Number,
       required: true
@@ -57,10 +52,13 @@ export default {
       type: Array,
       required: false
     },
-    // Czy wyświetlać kolumnę z akcjami
     actions: {
       type: Array,
       required: false
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 20
     }
   },
   components: { Actions },

@@ -22,7 +22,7 @@ new Vue({
       dark: false,
       themes: {
         light: {
-          primary: '#4caf50',
+          primary: '#11B0C8',
           secondary: '#4caf50',
           tertiary: '#495057',
           accent: '#82B1FF',

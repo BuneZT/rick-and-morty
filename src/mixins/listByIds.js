@@ -2,7 +2,6 @@ import { mapState } from 'vuex';
 
 import store from '@/store/store';
 import { notificationsMixin } from './notifications';
-import { tryParseInt } from '@/utils';
 
 /**
  * Mixin listy encji po id

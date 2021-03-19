@@ -8,7 +8,13 @@
 
     <v-row>
       <v-col>
-        <component-table :items="list" :headers="headers" :actions="actions" :pageCount="pages" />
+        <component-table
+          :items="list"
+          :headers="headers"
+          :actions="actions"
+          :pageCount="pages"
+          @addFavorite="addFavorite"
+        />
       </v-col>
     </v-row>
   </div>
@@ -16,12 +22,13 @@
 
 <script>
 import ComponentTable from '@/components/Table';
-import { DEFAULT_TABLE_ACTIONS } from '@/constants';
+import { ADD_FAVORITE } from '@/constants';
 import { listMixin } from '@/mixins/list';
 import Tabs from '../../components/Tabs.vue';
+import { SessionStorage } from '../../enums/sessionStorage.enum';
 
 // @vuese
-// Zakładki
+// Lista bohaterów
 // @group Character
 export default {
   props: {
@@ -41,13 +48,23 @@ export default {
   data() {
     return {
       headers: [
-        { text: 'Character ID', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'Gender', value: 'gender' },
-        { text: 'Species', value: 'species' }
+        { text: 'Character ID', value: 'id', sortable: false },
+        { text: 'Name', value: 'name', sortable: false },
+        { text: 'Gender', value: 'gender', sortable: false },
+        { text: 'Species', value: 'species', sortable: false },
+        { text: 'Add To Favorites', value: 'actions', sortable: false }
       ],
-      actions: DEFAULT_TABLE_ACTIONS
+      actions: [ADD_FAVORITE]
     };
+  },
+  methods: {
+    // @vuese
+    // Dodaje do listy ulubionych
+    addFavorite(objcet) {
+      const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
+      favorites.push(objcet.id.toString());
+      localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
+    }
   }
 };
 </script>

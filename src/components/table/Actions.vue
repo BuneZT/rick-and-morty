@@ -4,13 +4,13 @@
       <v-tooltip :key="action.event + '_' + index" top>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            icon
-            text
             :class="action.class"
             :color="actionColor(action)"
+            icon
+            text
             v-bind="attrs"
-            @click.prevent="$emit(action.event, object)"
             v-on="on"
+            @click.prevent="$emit(action.event, object)"
           >
             <v-icon>{{ action.icon }}</v-icon>
           </v-btn>
@@ -46,9 +46,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.table-actions {
-  float: right;
-}
-</style>

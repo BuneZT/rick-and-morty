@@ -28,4 +28,12 @@ export interface EntityResourceNames {
    * @memberof EntityResourceNames
    */
   filterName?: string;
+
+  /**
+   * Nazwa listy filtrującej po id
+   *
+   * @type {string}
+   * @memberof EntityResourceNames
+   */
+  listByIdsName?: string;
 }

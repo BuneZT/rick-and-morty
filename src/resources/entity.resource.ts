@@ -43,6 +43,15 @@ export abstract class EntityResource<EntityType> extends Resource {
   protected listArgs: any = FilterArgs;
 
   /**
+   * Nazwa zapytania o listę po id
+   *
+   * @protected
+   * @type {*}
+   * @memberof EntityResource
+   */
+  protected listByIdsName: any;
+
+  /**
    * Pola zapytania o listę
    *
    * @protected
@@ -91,19 +100,25 @@ export abstract class EntityResource<EntityType> extends Resource {
     const query = this.prepareOptions({
       query: {
         __variables: { ids: '[ID!]!' },
-        [this.listQueryName]: {
+        [this.listByIdsName]: {
           __args: { ids: new VariableType('ids') },
           ...this.listFields
         }
       }
     });
-    return this.query({ query, variables: { ids } }, this.listQueryName, preventLoader);
+    return this.query({ query, variables: { ids } }, this.listByIdsName, preventLoader);
   }
 
-  constructor({ entityName, listName = entityName + 's', filterName }: EntityResourceNames) {
+  constructor({
+    entityName,
+    listName = entityName + 's',
+    listByIdsName = entityName + 'sByIds',
+    filterName
+  }: EntityResourceNames) {
     super();
     this.entityName = entityName;
     this.listQueryName = listName;
+    this.listByIdsName = listByIdsName;
     this.listVariables = {
       page: 'Int',
       filter: filterName || `Filter${entityName.charAt(0).toUpperCase() + entityName.substr(1)}`

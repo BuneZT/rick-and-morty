@@ -15,14 +15,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import ComponentTable from '@/components/Table';
-import { DEFAULT_TABLE_ACTIONS } from '@/constants';
+import { REMOVE_FAVORITE } from '@/constants';
 import { listByIdsMixin } from '@/mixins/listByIds';
 import { getFavorites } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
 
 // @vuese
-// Zakładki
+// Ulubione postacie
 // @group Character
 export default {
   props: {
@@ -35,7 +37,7 @@ export default {
   components: { ComponentTable, Tabs },
   mixins: [
     listByIdsMixin(
-      'character',
+      'character/favorites',
       {
         listError: 'An error occurred while downloading characters.',
         listNotFound: 'Characters not found'
@@ -49,10 +51,15 @@ export default {
         { text: 'Character ID', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Gender', value: 'gender' },
-        { text: 'Species', value: 'species' }
+        { text: 'Species', value: 'species' },
+        { text: 'Add To Favorites', value: 'actions', sortable: false }
       ],
-      actions: DEFAULT_TABLE_ACTIONS
+      actions: [REMOVE_FAVORITE]
     };
-  }
+  },
+  computed: mapState({
+    list: state => state.character.favorites.list,
+    count: state => state.character.favorites.count
+  })
 };
 </script>

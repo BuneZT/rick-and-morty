@@ -54,7 +54,7 @@ export function tryParseDate(...values: any[]): Date | undefined {
 }
 
 /**
- * Pobiera liste ulubionych bochaterów
+ * Pobiera listę ulubionych bohaterów
  *
  * @export
  * @return {*}
@@ -64,4 +64,16 @@ export function getFavorites(): number[] | undefined {
     .getItem(SessionStorage.FAVORITE_CHARACTERS)
     ?.split(',')
     .map(item => tryParseInt(item) as number);
+}
+
+/**
+ * Usuwa z listy ulubionych
+ *
+ * @export
+ * @param {number} id
+ */
+export function removeFromFavorites(id: number) {
+  const favorites = localStorage.getItem(SessionStorage.FAVORITE_CHARACTERS)?.split(',') || [];
+  favorites.splice(favorites.indexOf(id.toString()), 1);
+  localStorage.setItem(SessionStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
 }
