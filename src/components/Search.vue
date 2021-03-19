@@ -11,6 +11,9 @@
 </template>
 
 <script>
+// @vuese
+// Wyszukiwarka
+// @group Components
 export default {
   data() {
     return {
@@ -31,7 +34,7 @@ export default {
   watch: {
     search(value) {
       const nextRoute = {
-        name: this.$route.name,
+        name: 'characters',
         params: this.$route.params,
         query: { [this.selectedType]: value }
       };

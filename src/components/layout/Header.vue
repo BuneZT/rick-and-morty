@@ -9,12 +9,6 @@
         <search />
       </v-col>
     </v-row>
-
-    <v-row>
-      <v-col>
-        sddsds
-      </v-col>
-    </v-row>
   </div>
 </template>
 

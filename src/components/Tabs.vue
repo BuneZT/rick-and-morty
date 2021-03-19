@@ -1,0 +1,26 @@
+<template>
+  <v-tabs v-model="activeTab">
+    <v-tab v-for="(item, index) in items" :key="'tab_' + index" exact :to="{ name: item.routeName }">{{
+      item.name
+    }}</v-tab>
+  </v-tabs>
+</template>
+
+<script>
+// @vuese
+// Zakładki
+// @group MainLayout
+export default {
+  props: {
+    items: {
+      type: Array,
+      required: true
+    }
+  },
+  data() {
+    return {
+      activeTab: this.$route.name
+    };
+  }
+};
+</script>

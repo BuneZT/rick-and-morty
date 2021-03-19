@@ -1,14 +1,15 @@
 import { RouteConfig } from 'vue-router';
 
-import characterList from '@/views/character/List.vue';
+import CharacterList from '@/views/character/List.vue';
 
 export const charactersRoute: RouteConfig = {
   path: '',
-  component: characterList,
+  component: CharacterList,
   name: 'characters',
-  meta: {
-    breadcrumb: {
-      title: 'Postacie'
-    }
+  props: {
+    tabs: [
+      { name: 'All Characters', routeName: 'characters' },
+      { name: 'Favorites', routeName: 'charactersFavourite' }
+    ]
   }
 };
