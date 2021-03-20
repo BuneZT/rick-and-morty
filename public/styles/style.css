@@ -14,3 +14,17 @@
 .v-data-table-header {
   background-color: rgba(229, 234, 244, 0.25);
 }
+
+.v-select__selection,
+.text-start,
+.v-pagination__item {
+  color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.v-pagination__item--active {
+  color: white !important;
+}
+
+.v-card__title {
+  word-break: break-word !important;
+}

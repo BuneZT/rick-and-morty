@@ -1,6 +1,6 @@
 <template>
   <span>
-    <v-icon class="pb-2">{{ genderIcon }}</v-icon>
+    <v-icon class="pb-2 gender-icon">{{ genderIcon }}</v-icon>
     {{ item.gender }}
   </span>
 </template>
@@ -28,3 +28,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.gender-icon {
+  color: rgba(0, 0, 0, 0.38) !important;
+}
+</style>

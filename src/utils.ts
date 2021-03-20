@@ -61,19 +61,24 @@ export function tryParseDate(...values: any[]): Date | undefined {
  * @export
  * @param {Character} character
  */
-export function findCharacterLastEpisodeName(character: Character): String {
+export function findCharacterLastEpisodeName(character: Character): string {
   if (!character.episode?.length) {
     return 'Empty';
   }
   return [...character.episode].pop()?.name || 'Empty';
 }
 
-export const getFavorites = () => {
+export /**
+ * Pobiera liste ulubionych
+ *
+ * @return {*}  {number[]}
+ */
+const getFavorites = (): number[] => {
   return (
     localStorage
       .getItem(LocalStorage.FAVORITE_CHARACTERS)
       ?.split(',')
-      .map(item => tryParseInt(item))
+      .map(item => tryParseInt(item) as number)
       .filter(item => item) || []
   );
 };
