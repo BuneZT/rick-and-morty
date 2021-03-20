@@ -40,7 +40,7 @@ export default {
   props: {
     x: {
       type: String,
-      default: null
+      default: 'right'
     },
     y: {
       type: String,

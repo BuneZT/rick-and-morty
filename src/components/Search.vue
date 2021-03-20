@@ -30,19 +30,31 @@ export default {
     };
   },
   created() {
-    const querySearchValue = this.$route.query[this.selectedType];
-    if (querySearchValue) {
-      this.search = querySearchValue;
+    for (const item of this.items) {
+      if (this.$route.query[item.value]) {
+        this.search = this.$route.query[item.value];
+        this.selectedType = item.value;
+        return;
+      }
     }
   },
+
   watch: {
     search(value) {
+      if (this.$route.name === 'charactersFavorite' && !value) {
+        return;
+      }
       const nextRoute = {
         name: 'characters',
         params: this.$route.params,
         query: { [this.selectedType]: value }
       };
       this.$router.replace(nextRoute);
+    },
+    $route(to, from) {
+      if (to.name === 'charactersFavorite') {
+        this.search = '';
+      }
     }
   }
 };
