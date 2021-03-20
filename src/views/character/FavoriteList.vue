@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       headers: [
+        { text: 'Photo', value: 'image', sortable: false },
         { text: 'Character ID', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Gender', value: 'gender' },

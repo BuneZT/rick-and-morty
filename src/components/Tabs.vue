@@ -7,7 +7,7 @@
 <script>
 // @vuese
 // Zakładki
-// @group MainLayout
+// @group Compoents
 export default {
   props: {
     items: {

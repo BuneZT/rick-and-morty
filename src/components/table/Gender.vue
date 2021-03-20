@@ -6,11 +6,9 @@
 </template>
 
 <script>
-/**
- * @vuese
- * @group Table
- * Wyświetlanie płci w tabeli
- */
+// @vuese
+// Wyświetlanie płci w tabeli
+// @group Table
 export default {
   props: {
     item: {

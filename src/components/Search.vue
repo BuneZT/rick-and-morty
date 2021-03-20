@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col md="1" sm="12">
-      <v-text-field v-model="search" class="rounded-l-lg" outlined label="SearchBy" disabled> </v-text-field>
+      <v-text-field class="rounded-l-lg" outlined label="SearchBy" disabled> </v-text-field>
     </v-col>
 
     <v-col md="2" sm="12">

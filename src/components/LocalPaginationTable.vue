@@ -18,6 +18,10 @@
       <template v-slot:item.gender="{ item }">
         <gender :item="item" />
       </template>
+
+      <template v-slot:item.image="{ item }">
+        <image-display :item="item" />
+      </template>
     </v-data-table>
 
     <div class="pt-2">
@@ -30,12 +34,11 @@
 import { tryParseInt } from '@/utils';
 import Actions from './table/Actions';
 import Gender from './table/Gender';
+import ImageDisplay from './table/ImageDisplay.vue';
 
-/**
- * @vuese
- * @group Components/Material
- * Tabela oparta o lokalną paginację
- */
+// @vuese
+// Tabela oparta o lokalną paginację
+// @group Components
 export default {
   props: {
     headers: {
@@ -63,7 +66,7 @@ export default {
       default: 20
     }
   },
-  components: { Actions, Gender },
+  components: { Actions, Gender, ImageDisplay },
   data() {
     return {
       page: tryParseInt(this.$route.query.page) || 1
