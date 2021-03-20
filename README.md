@@ -15,6 +15,4 @@ npm run build
 # lint
 npm run lint
 
-# testy
-npm test
 ```
