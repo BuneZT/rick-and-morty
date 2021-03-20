@@ -6,7 +6,6 @@
     :right="x === 'right'"
     :timeout="timeout"
     :top="y === 'top'"
-    auto-height
   >
     <div>
       <b>{{ message.title }}</b>

@@ -9,6 +9,7 @@
     <v-row>
       <v-col>
         <component-table
+          :key="key"
           :items="list"
           :headers="headers"
           :actions="actions"
@@ -26,7 +27,8 @@ import { mapState } from 'vuex';
 import ComponentTable from '@/components/Table';
 import { ADD_FAVORITE } from '@/constants';
 import { listMixin } from '@/mixins/list';
-import { findCharacterLastEpisodeName } from '@/utils';
+import store from '@/store/store';
+import { findCharacterLastEpisodeName, tryParseInt } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
 import { LocalStorage } from '../../enums/localStorage.enum';
 
@@ -60,13 +62,16 @@ export default {
 
         { text: 'Add To Favorites', value: 'actions', sortable: false }
       ],
-      actions: [ADD_FAVORITE]
+      actions: [ADD_FAVORITE],
+      key: 1
     };
   },
   computed: mapState({
     list: state =>
       state.character.list.map(character => {
         character.lastEpisode = findCharacterLastEpisodeName(character);
+        character.isFavorite = state.favoriteCharacter.ids.includes(tryParseInt(character.id));
+
         return character;
       })
   }),
@@ -84,8 +89,15 @@ export default {
     // Dodaje do listy ulubionych
     addFavorite(id) {
       const favorites = localStorage.getItem(LocalStorage.FAVORITE_CHARACTERS)?.split(',') || [];
+      store.commit('favoriteCharacter/addToIds', tryParseInt(id));
       favorites.push(id.toString());
       localStorage.setItem(LocalStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
+      this.rerenderTable();
+    },
+    // @vuese
+    // Rerenderuje tabele
+    rerenderTable() {
+      this.key++;
     }
   }
 };

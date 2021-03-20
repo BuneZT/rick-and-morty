@@ -29,4 +29,12 @@ export interface EntityModuleState<EntityType> {
    * @memberof EntityModuleState
    */
   pages: number;
+
+  /**
+   * Idki encji do pobrania
+   *
+   * @type {number[]}
+   * @memberof EntityModuleState
+   */
+  ids: number[];
 }

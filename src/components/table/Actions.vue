@@ -1,7 +1,7 @@
 <template>
   <td v-if="actions && actions.length > 0" class="table-actions">
     <template v-for="(action, index) in actions">
-      <v-tooltip :key="action.event + '_' + index" top>
+      <v-tooltip v-if="!(action.hideFunction && action.hideFunction(object))" :key="action.event + '_' + index" top>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             small

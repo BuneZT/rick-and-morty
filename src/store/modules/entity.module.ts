@@ -17,6 +17,7 @@ export class EntityModule<
    */
   public state: EntityModuleState<EntityType> = {
     list: [],
+    ids: [],
     count: 0,
     pages: 0
   };
@@ -48,6 +49,24 @@ export class EntityModule<
      */
     savePages(localState: EntityModuleState<EntityType>, pages: number): void {
       localState.pages = pages;
+    },
+    /**
+     * Zapisuje idki encji do pobrania
+     *
+     * @param {EntityModuleState<EntityType>} localState
+     * @param {number[]} ids
+     */
+    setIds(localState: EntityModuleState<EntityType>, ids: number[]): void {
+      localState.ids = ids;
+    },
+    /**
+     * Dodaje id do listy idk-ów encji do pobrania
+     *
+     * @param {EntityModuleState<EntityType>} localState
+     * @param {number} id
+     */
+    addToIds(localState: EntityModuleState<EntityType>, id: number): void {
+      localState.ids.push(id);
     },
     /**
      * Podnosi liczbę encji o 1
@@ -109,8 +128,12 @@ export class EntityModule<
      * @param {number[]} ids
      * @return {*}  {Promise<void>}
      */
-    listByIds: async (context: any, ids: number[]): Promise<void> => {
-      if (!ids.length) {
+    listByIds: async (context: any, ids?: number[]): Promise<void> => {
+      if (!ids) {
+        ids = context.state.ids;
+      }
+
+      if (!ids?.length) {
         context.commit('saveList', []);
         context.commit('saveCount', 0);
         return;

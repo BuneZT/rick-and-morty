@@ -17,7 +17,7 @@ import { notificationsMixin } from './notifications';
  * @param {string} messages.listNotFound - wiadomość w przypadku nie znalezienia listy
  * @returns {Object} mixin
  */
-export function listByIdsMixin(moduleName, messages, getIds) {
+export function listByIdsMixin(moduleName, messages, ids) {
   return {
     mixins: [notificationsMixin],
     /**
@@ -48,7 +48,7 @@ export function listByIdsMixin(moduleName, messages, getIds) {
    */
   function getList(to, from, next) {
     store
-      .dispatch(`${moduleName}/listByIds`, getIds())
+      .dispatch(`${moduleName}/listByIds`, ids)
       .then(() => next())
       .catch(err =>
         store.dispatch('notifyError', {

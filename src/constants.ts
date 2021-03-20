@@ -3,7 +3,8 @@ export const ADD_FAVORITE = {
   icon: 'grade',
   color: 'primary',
   tooltipText: 'Add to Favorites',
-  outlined: true
+  outlined: true,
+  hideFunction: (object: any) => object.isFavorite
 };
 
 export const REMOVE_FAVORITE = {

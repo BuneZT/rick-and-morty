@@ -43,14 +43,10 @@ export default {
   },
   components: { ComponentLocalPaginationTable, Tabs },
   mixins: [
-    listByIdsMixin(
-      'character',
-      {
-        listError: 'An error occurred while downloading characters.',
-        listNotFound: 'Characters not found'
-      },
-      getFavorites
-    )
+    listByIdsMixin('favoriteCharacter', {
+      listError: 'An error occurred while downloading characters.',
+      listNotFound: 'Characters not found'
+    })
   ],
   data() {
     return {
@@ -69,7 +65,7 @@ export default {
   },
   computed: mapState({
     list: state =>
-      state.character.list.map(character => {
+      state.favoriteCharacter.list.map(character => {
         character.lastEpisode = findCharacterLastEpisodeName(character);
         return character;
       })
@@ -90,7 +86,7 @@ export default {
       const favorites = localStorage.getItem(LocalStorage.FAVORITE_CHARACTERS)?.split(',') || [];
       favorites.splice(favorites.indexOf(id.toString()), 1);
       localStorage.setItem(LocalStorage.FAVORITE_CHARACTERS, [...new Set(favorites)].join(','));
-      store.dispatch('character/remove', id);
+      store.dispatch('favoriteCharacter/remove', id);
     }
   }
 };

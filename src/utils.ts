@@ -68,12 +68,13 @@ export function findCharacterLastEpisodeName(character: Character): string {
   return [...character.episode].pop()?.name || 'Empty';
 }
 
-export /**
- * Pobiera liste ulubionych
+/**
+ * Pobiera ulubione postacie
  *
+ * @export
  * @return {*}  {number[]}
  */
-const getFavorites = (): number[] => {
+export function getFavorites(): number[] {
   return (
     localStorage
       .getItem(LocalStorage.FAVORITE_CHARACTERS)
@@ -81,4 +82,4 @@ const getFavorites = (): number[] => {
       .map(item => tryParseInt(item) as number)
       .filter(item => item) || []
   );
-};
+}
