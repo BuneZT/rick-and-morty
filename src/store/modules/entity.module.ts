@@ -126,7 +126,7 @@ export class EntityModule<
      * @param context context
      * @param id identyfikator encji
      */
-    remove: (context: any, id: number): void => {
+    remove: (context: any, id: number): any => {
       context.commit('remove', id);
       context.commit('decrementCount');
     }
