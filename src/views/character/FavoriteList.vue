@@ -26,7 +26,7 @@ import ComponentLocalPaginationTable from '@/components/LocalPaginationTable';
 import { REMOVE_FAVORITE } from '@/constants';
 import { listByIdsMixin } from '@/mixins/listByIds';
 import store from '@/store/store';
-import { getFavorites, findCharacterLastEpisodeName } from '@/utils';
+import { findCharacterLastEpisodeName, getFavorites } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
 import { LocalStorage } from '../../enums/localStorage.enum';
 
@@ -49,7 +49,7 @@ export default {
         listError: 'An error occurred while downloading characters.',
         listNotFound: 'Characters not found'
       },
-      getFavorites()
+      getFavorites
     )
   ],
   data() {

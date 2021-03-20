@@ -55,23 +55,6 @@ export function tryParseDate(...values: any[]): Date | undefined {
 }
 
 /**
- * Pobiera listę ulubionych postaci
- *
- * @export
- * @return {*}
- */
-export function getFavorites(): number[] {
-  console.log(localStorage.getItem(LocalStorage.FAVORITE_CHARACTERS));
-  return (
-    localStorage
-      .getItem(LocalStorage.FAVORITE_CHARACTERS)
-      ?.split(',')
-      .map(item => tryParseInt(item) as number)
-      .filter(item => item) || []
-  );
-}
-
-/**
  * Znajduje ostatni odcinek postaci
  * (dla uproszczenia zakładam że zawsze ostatni na liście)
  *
@@ -84,3 +67,13 @@ export function findCharacterLastEpisodeName(character: Character): String {
   }
   return [...character.episode].pop()?.name || 'Empty';
 }
+
+export const getFavorites = () => {
+  return (
+    localStorage
+      .getItem(LocalStorage.FAVORITE_CHARACTERS)
+      ?.split(',')
+      .map(item => tryParseInt(item))
+      .filter(item => item) || []
+  );
+};
