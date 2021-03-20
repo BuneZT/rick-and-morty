@@ -31,10 +31,14 @@ export default {
     };
   },
   methods: {
+    // @vuese
+    // Potwierdzenie modala
     onConfirmSubmit() {
       this.confirm.onSuccess();
       this.showConfirm = false;
     },
+    // @vuese
+    // Zamykanie modala przy potwierdzeniu
     onConfirmCancel() {
       this.showConfirm = false;
     }

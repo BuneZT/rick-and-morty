@@ -34,7 +34,9 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
-
+// @vuese
+// Notyfikacja
+// @group MainLayout
 export default {
   props: {
     x: {

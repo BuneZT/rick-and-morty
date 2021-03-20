@@ -1,13 +1,13 @@
 <template>
-  <v-container fill-height style="height: calc(100vh - 58px);">
-    <v-layout align-center>
-      <v-flex text-center>
-        <h1 class="text-h3 primary--text">Oj, 404</h1>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1 class="text-h3 primary--text">404</h1>
 
-        <p>Strona, której szukasz nie istnieje</p>
+        <p>The page you are looking for does not exist</p>
 
-        <v-btn outline color="primary" :to="`/`">Wróć na stronę główną!</v-btn>
-      </v-flex>
-    </v-layout>
+        <v-btn :to="`/`">Go back to the home page!</v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>

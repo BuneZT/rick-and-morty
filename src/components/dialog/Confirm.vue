@@ -29,6 +29,10 @@
 </template>
 
 <script>
+// @vuese
+// Modal potwierdzania
+// @group Dialog
+
 export default {
   props: {
     title: {
@@ -43,9 +47,13 @@ export default {
   },
 
   methods: {
+    // @vuese
+    // Zamyka okno
     onCancel() {
       this.$emit('cancel');
     },
+    // @vuese
+    // Potwierdzenie
     onSubmit() {
       this.$emit('submit');
     }
