@@ -5,7 +5,7 @@ import { getFavorites } from '@/utils';
 import CharacterFavoriteList from '@/views/character/FavoriteList.vue';
 
 export const charactersFavoriteRoute: RouteConfig = {
-  path: 'favorite',
+  path: 'favorites',
   component: CharacterFavoriteList,
   name: 'charactersFavorite',
   props: {

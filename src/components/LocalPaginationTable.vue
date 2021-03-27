@@ -24,7 +24,7 @@
       </template>
     </v-data-table>
 
-    <div class="pt-2">
+    <div v-if="items.length" class="pt-2">
       <v-pagination v-model="page" :total-visible="6" :length="pageCount" />
     </div>
   </div>

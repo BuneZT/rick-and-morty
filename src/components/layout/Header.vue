@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-row>
-      <v-col sm="12" md="2">
+    <v-row align="center" justify="center">
+      <v-col class="margin-top:auto" sm="12" md="2">
         <v-img :src="imgSrc" />
       </v-col>
 
