@@ -1,5 +1,7 @@
 # rick-and-morty
 
+[Adres strony](https://blissful-shockley-ca6e8a.netlify.app)
+
 ## Uruchomienie
 
 ```bash
