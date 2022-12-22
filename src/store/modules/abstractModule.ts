@@ -16,10 +16,9 @@ export class AbstractModule<EntityType extends { id?: number },
     list: [],
     ids: [],
     count: 0,
-    pages: 0
+    pages: 0,
   };
   public namespaced: boolean = true;
-
 
   public mutations: Dictionary<(...args: any[]) => void> = {
     /**
@@ -101,9 +100,9 @@ export class AbstractModule<EntityType extends { id?: number },
     remove(localState: AbstractModuleState<EntityType>, id: number): void {
       localState.list.splice(
         localState.list.findIndex((item: EntityType) => item.id === id),
-        1
+        1,
       );
-    }
+    },
   };
 
   public actions: Dictionary<(...args: any[]) => Promise<void | any>> = {
@@ -151,7 +150,7 @@ export class AbstractModule<EntityType extends { id?: number },
     remove: (context: any, id: number): any => {
       context.commit('remove', id);
       context.commit('decrementCount');
-    }
+    },
   };
 
   public getters = {
@@ -159,7 +158,7 @@ export class AbstractModule<EntityType extends { id?: number },
      * Wybiera encję o podanym identyfikatorze z listy
      */
     byId: (localState: AbstractModuleState<EntityType>) => (id: number): EntityType | undefined =>
-      localState.list.find(entity => entity.id === id)
+      localState.list.find(entity => entity.id === id),
   };
 
   constructor(protected resource: ResourceType) {

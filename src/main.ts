@@ -1,17 +1,14 @@
 import '@babel/polyfill';
 import Vue from 'vue';
-import vueMoment from 'vue-moment';
 
 import '@mdi/font/css/materialdesignicons.css';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
-import pl from 'vuetify/src/locale/pl';
 import App from './App.vue';
 import './plugins/vuetify';
 import router from './router';
 import store from './store/store';
 
-Vue.use(vueMoment as any);
 Vue.config.productionTip = false;
 export const eventBus = new Vue();
 new Vue({

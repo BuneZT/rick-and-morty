@@ -5,5 +5,5 @@
  * @enum {number}
  */
 export enum LocalStorage {
-  FAVORITE_CHARACTERS = 'FAVORITE_CHARACTERS'
+  FAVORITE_CHARACTERS = 'FAVORITE_CHARACTERS',
 }

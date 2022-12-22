@@ -25,7 +25,6 @@ export class Resource {
     return this.makeRequest(apolloClient.query(options), field, preventLoader);
   }
 
-
   /**
    * Transformuje obiekt na zapytanie GQL
    *

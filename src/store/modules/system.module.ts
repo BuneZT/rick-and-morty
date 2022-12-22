@@ -24,7 +24,7 @@ export class SystemModule {
     packageVersion: process.env.PACKAGE_VERSION,
     // data kompilacji
     buildDate: process.env.PACKAGE_BUILD_DATE,
-    appTitle: 'Szablon aplikacji vue'
+    appTitle: 'Szablon aplikacji vue',
   };
 }
 

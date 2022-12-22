@@ -41,8 +41,9 @@ export function listByIdsMixin(moduleName, messages) {
    * @param {*} to
    * @param {*} from
    * @param {*} next
+   * @param ids
    */
-  function getList(to, from, next) {
+  function getList(to, from, next, ids) {
     store
       .dispatch(`${moduleName}/listByIds`, ids)
       .then(() => next())

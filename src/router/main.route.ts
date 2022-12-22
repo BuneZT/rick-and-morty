@@ -7,5 +7,5 @@ export const mainRoute: RouteConfig = {
   path: '/',
   component: AppLayout,
   redirect: { name: 'characters' },
-  children: [characterContainerRoute]
+  children: [characterContainerRoute],
 };

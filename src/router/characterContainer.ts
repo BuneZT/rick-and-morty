@@ -7,5 +7,5 @@ import { charactersFavoriteRoute } from './charactersFavorite';
 export const characterContainerRoute: RouteConfig = {
   path: 'characters',
   component: RouterView,
-  children: [charactersRoute, charactersFavoriteRoute]
+  children: [charactersRoute, charactersFavoriteRoute],
 };

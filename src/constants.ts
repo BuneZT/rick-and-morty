@@ -4,7 +4,7 @@ export const ADD_FAVORITE = {
   color: 'primary',
   tooltipText: 'Add to Favorites',
   outlined: true,
-  hideFunction: (object: any) => object.isFavorite
+  hideFunction: (object: any) => object.isFavorite,
 };
 
 export const REMOVE_FAVORITE = {
@@ -12,5 +12,5 @@ export const REMOVE_FAVORITE = {
   event: 'removeFavorite',
   icon: 'grade',
   color: 'primary',
-  tooltipText: 'Remove from favorites'
+  tooltipText: 'Remove from favorites',
 };

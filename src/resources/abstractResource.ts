@@ -61,6 +61,22 @@ export abstract class AbstractResource<EntityType> extends Resource {
    */
   protected abstract listFields: any;
 
+  protected constructor({
+                          entityName,
+                          listName = entityName + 's',
+                          listByIdsName = entityName + 'sByIds',
+                          filterName,
+                        }: AbstractResourceNames) {
+    super();
+    this.entityName = entityName;
+    this.listQueryName = listName;
+    this.listByIdsName = listByIdsName;
+    this.listVariables = {
+      page: 'Int',
+      filter: filterName || `Filter${entityName.charAt(0).toUpperCase() + entityName.substr(1)}`,
+    };
+  }
+
   /**
    * Pobranie listy encji
    *
@@ -80,10 +96,10 @@ export abstract class AbstractResource<EntityType> extends Resource {
             count: true,
             pages: true,
             next: true,
-            prev: true
-          }
-        }
-      }
+            prev: true,
+          },
+        },
+      },
     });
     return this.query({ query, variables: { ...filters } }, this.listQueryName, preventLoader);
   }
@@ -102,26 +118,10 @@ export abstract class AbstractResource<EntityType> extends Resource {
         __variables: { ids: '[ID!]!' },
         [this.listByIdsName]: {
           __args: { ids: new VariableType('ids') },
-          ...this.listFields
-        }
-      }
+          ...this.listFields,
+        },
+      },
     });
     return this.query({ query, variables: { ids } }, this.listByIdsName, preventLoader);
-  }
-
-  protected constructor({
-                          entityName,
-                          listName = entityName + 's',
-                          listByIdsName = entityName + 'sByIds',
-                          filterName
-                        }: AbstractResourceNames) {
-    super();
-    this.entityName = entityName;
-    this.listQueryName = listName;
-    this.listByIdsName = listByIdsName;
-    this.listVariables = {
-      page: 'Int',
-      filter: filterName || `Filter${entityName.charAt(0).toUpperCase() + entityName.substr(1)}`
-    };
   }
 }

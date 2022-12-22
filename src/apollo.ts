@@ -9,7 +9,7 @@ export const apolloClient = new ApolloClient({
 });
 
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
+  defaultClient: apolloClient,
 });
 
 export default apolloProvider;

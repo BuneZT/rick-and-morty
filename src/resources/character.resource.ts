@@ -18,13 +18,13 @@ export class CharacterResource extends AbstractResource<Character> {
     status: true,
     episode: {
       id: true,
-      name: true
-    }
+      name: true,
+    },
   };
 
   constructor() {
     super({
-      entityName: 'character'
+      entityName: 'character',
     });
   }
 }

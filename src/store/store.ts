@@ -4,7 +4,6 @@ import Vuex from 'vuex';
 import character from './modules/character.module';
 import confirm from './modules/confirm.module';
 import favoriteCharacter from './modules/favoriteCharacter.module';
-import notification from './modules/notification.module';
 import system from './modules/system.module';
 
 Vue.use(Vuex);
@@ -15,7 +14,7 @@ const store = new Vuex.Store({
   getters: {},
   mutations: {},
   state: {},
-  modules: { notification, system, character, confirm, favoriteCharacter }
+  modules: { system, character, confirm, favoriteCharacter }
 });
 
 export default store;

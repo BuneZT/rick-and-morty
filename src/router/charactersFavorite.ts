@@ -11,11 +11,11 @@ export const charactersFavoriteRoute: RouteConfig = {
   props: {
     tabs: [
       { name: 'All Characters', routeName: 'characters' },
-      { name: 'Favorites', routeName: 'charactersFavorite' }
-    ]
+      { name: 'Favorites', routeName: 'charactersFavorite' },
+    ],
   },
   beforeEnter: (to: any, from: any, next: any) => {
     store.commit('favoriteCharacter/setIds', getFavorites());
     next();
-  }
+  },
 };
