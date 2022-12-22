@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <notification></notification>
     <router-view />
 
     <confirm
@@ -21,10 +20,9 @@
 import { mapState } from 'vuex';
 
 import Confirm from '@/components/dialog/Confirm';
-import Notification from '@/components/layout/Notification';
 
 export default {
-  components: { Notification, Confirm },
+  components: {  Confirm },
   data() {
     return {
       showConfirm: false

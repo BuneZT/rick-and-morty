@@ -8,7 +8,7 @@
 
     <v-row>
       <v-col>
-        <component-table
+        <list-table
           :key="key"
           :items="list"
           :headers="headers"
@@ -24,7 +24,7 @@
 <script>
 import { mapState } from 'vuex';
 
-import ComponentTable from '@/components/Table';
+import ListTable from '@/components/Table';
 import { ADD_FAVORITE } from '@/constants';
 import { listMixin } from '@/mixins/list';
 import store from '@/store/store';
@@ -43,7 +43,7 @@ export default {
       default: () => []
     }
   },
-  components: { ComponentTable, Tabs },
+  components: { ListTable, Tabs },
   mixins: [
     listMixin('character', {
       listError: 'An error occurred while downloading characters.',
