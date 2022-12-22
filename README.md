@@ -1,20 +1,13 @@
 # rick-and-morty
 
-[Adres strony](https://blissful-shockley-ca6e8a.netlify.app)
+App to browse through your favourite Rick and Morty characters
 
-## Uruchomienie
+[Demo](https://blissful-shockley-ca6e8a.netlify.app)
+
+## Run
 
 ```bash
-# instalacja zależności
 npm install
 
-# uruchomienie lokalne do debugowania localhost:8080
-npm run debug
-
-# zbudowanie wersji produkcyjnej
-npm run build
-
-# lint
-npm run lint
-
+npm run serve
 ```
