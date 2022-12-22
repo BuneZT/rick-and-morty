@@ -8,7 +8,7 @@
 
     <v-row>
       <v-col>
-        <component-local-pagination-table
+        <local-pagination-table
           :items="list"
           :headers="headers"
           :actions="actions"
@@ -22,7 +22,7 @@
 <script>
 import { mapState } from 'vuex';
 
-import ComponentLocalPaginationTable from '@/components/LocalPaginationTable';
+import LocalPaginationTable from '@/components/LocalPaginationTable';
 import { REMOVE_FAVORITE } from '@/constants';
 import { LocalStorage } from '@/enums/localStorage.enum';
 import { listByIdsMixin } from '@/mixins/listByIds';
@@ -41,7 +41,7 @@ export default {
       default: () => []
     }
   },
-  components: { ComponentLocalPaginationTable, Tabs },
+  components: { LocalPaginationTable, Tabs },
   mixins: [
     listByIdsMixin('favoriteCharacter', {
       listError: 'An error occurred while downloading characters.',
@@ -58,7 +58,7 @@ export default {
         { text: 'Species', value: 'species' },
         { text: 'Last episode', value: 'lastEpisode' },
 
-        { text: 'Remove From Favorites', value: 'actions', sortable: false }
+        { text: 'Remove From Favorites', value: 'actions', sortable: false, align: 'center' }
       ],
       actions: [REMOVE_FAVORITE]
     };

@@ -1,11 +1,13 @@
 <template>
-  <v-img class="my-3" :aspect-ratio="aspectRatio" :class="{ 'dead-filter': isDead }" max-width="50" :src="item.image" />
+  <v-img class="my-3" :class="{ 'dead-filter': isDead }" max-width="50" :src="item.image" />
 </template>
 
 <script>
 // @vuese
 // Wyświetlanie zdjęćia w tabeli
 // @group Table
+import { CharacterStatusEnum } from '@/enums/characterStatus.enum';
+
 export default {
   props: {
     item: {
@@ -15,11 +17,9 @@ export default {
   },
   computed: {
     isDead() {
-      return this.item.status === 'Dead';
+      return this.item.status === CharacterStatusEnum.DEAD;
     },
-    aspectRatio() {
-      return window.innerWidth < 600 ? undefined : 3 / 4;
-    }
+
   }
 };
 </script>

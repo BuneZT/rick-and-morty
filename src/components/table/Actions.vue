@@ -1,8 +1,8 @@
 <template>
-  <td v-if="actions && actions.length > 0" class="table-actions">
-    <template v-for="(action, index) in actions">
+  <span v-if="actions && actions.length > 0">
+    <template  v-for="(action, index) in actions">
       <v-tooltip v-if="!(action.hideFunction && action.hideFunction(object))" :key="action.event + '_' + index" top>
-        <template v-slot:activator="{ on, attrs }">
+        <template  v-slot:activator="{ on, attrs }">
           <v-btn
             small
             :class="action.class"
@@ -18,7 +18,7 @@
         <span>{{ action.tooltipText }}</span>
       </v-tooltip>
     </template>
-  </td>
+  </span>
 </template>
 
 <script>

@@ -60,7 +60,7 @@ export default {
         { text: 'Species', value: 'species', sortable: false },
         { text: 'Last episode', value: 'lastEpisode', sortable: false },
 
-        { text: 'Add To Favorites', value: 'actions', sortable: false }
+        { text: 'Add To Favorites', value: 'actions', sortable: false, align: 'center' }
       ],
       actions: [ADD_FAVORITE],
       key: 1

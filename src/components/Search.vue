@@ -1,7 +1,6 @@
 <template>
   <v-row no-gutters>
 
-
     <v-col md="2" sm="12" class="mt-5">
       <v-select v-model="selectedType" class="rounded-l-lg rounded-r-0" tiled outlined :items="items" />
     </v-col>
