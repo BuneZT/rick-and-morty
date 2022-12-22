@@ -1,12 +1,10 @@
 {
   "name": "rick-and-morty",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rick and Morty przegląd postaci",
   "main": "index.js",
   "scripts": {
-    "debug": "npm run serve",
     "serve": "vue-cli-service serve",
-    "serve:develop": "vue-cli-service serve --mode develop",
     "build": "vue-cli-service build",
     "build:develop": "vue-cli-service build --mode develop",
     "lint": "vue-cli-service lint",
