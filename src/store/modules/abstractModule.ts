@@ -1,26 +1,25 @@
 import { Dictionary } from 'vuex';
 
-import { EntityModuleState } from '@/interfaces/entityModuleState';
+import { AbstractModuleState } from '@/interfaces/abstractModuleState';
 import { Filter } from '@/interfaces/filter';
-import { EntityResource } from '@/resources/entity.resource';
-import { AbstractModule } from './abstract.module';
+import { AbstractResource } from '@/resources/abstractResource';
 
-export class EntityModule<
-  EntityType extends { id?: number },
-  ResourceType extends EntityResource<EntityType>
-> extends AbstractModule<ResourceType> {
+export class AbstractModule<EntityType extends { id?: number },
+  ResourceType extends AbstractResource<EntityType>> {
   /**
    * Stan modułu encji
    *
-   * @type {EntityModuleState<EntityType>}
-   * @memberof EntityModule
+   * @type {AbstractModuleState<EntityType>}
+   * @memberof AbstractModule
    */
-  public state: EntityModuleState<EntityType> = {
+  public state: AbstractModuleState<EntityType> = {
     list: [],
     ids: [],
     count: 0,
     pages: 0
   };
+  public namespaced: boolean = true;
+
 
   public mutations: Dictionary<(...args: any[]) => void> = {
     /**
@@ -29,7 +28,7 @@ export class EntityModule<
      * @param localState stan lokalny
      * @param list lista encji
      */
-    saveList(localState: EntityModuleState<EntityType>, list: EntityType[]): void {
+    saveList(localState: AbstractModuleState<EntityType>, list: EntityType[]): void {
       localState.list = list;
     },
     /**
@@ -38,34 +37,34 @@ export class EntityModule<
      * @param localState stan lokalny
      * @param count liczba encji
      */
-    saveCount(localState: EntityModuleState<EntityType>, count: number): void {
+    saveCount(localState: AbstractModuleState<EntityType>, count: number): void {
       localState.count = count;
     },
     /**
      * Zapisuje liczbę stron
      *
-     * @param {EntityModuleState<EntityType>} localState
+     * @param {AbstractModuleState<EntityType>} localState
      * @param {number} pages
      */
-    savePages(localState: EntityModuleState<EntityType>, pages: number): void {
+    savePages(localState: AbstractModuleState<EntityType>, pages: number): void {
       localState.pages = pages;
     },
     /**
      * Zapisuje idki encji do pobrania
      *
-     * @param {EntityModuleState<EntityType>} localState
+     * @param {AbstractModuleState<EntityType>} localState
      * @param {number[]} ids
      */
-    setIds(localState: EntityModuleState<EntityType>, ids: number[]): void {
+    setIds(localState: AbstractModuleState<EntityType>, ids: number[]): void {
       localState.ids = ids;
     },
     /**
      * Dodaje id do listy idk-ów encji do pobrania
      *
-     * @param {EntityModuleState<EntityType>} localState
+     * @param {AbstractModuleState<EntityType>} localState
      * @param {number} id
      */
-    addToIds(localState: EntityModuleState<EntityType>, id: number): void {
+    addToIds(localState: AbstractModuleState<EntityType>, id: number): void {
       localState.ids.push(id);
     },
     /**
@@ -73,7 +72,7 @@ export class EntityModule<
      *
      * @param localState stan lokalny
      */
-    incrementCount(localState: EntityModuleState<EntityType>): void {
+    incrementCount(localState: AbstractModuleState<EntityType>): void {
       localState.count += 1;
     },
     /**
@@ -81,7 +80,7 @@ export class EntityModule<
      *
      * @param localState stan lokalny
      */
-    decrementCount(localState: EntityModuleState<EntityType>): void {
+    decrementCount(localState: AbstractModuleState<EntityType>): void {
       localState.count -= 1;
     },
     /**
@@ -99,7 +98,7 @@ export class EntityModule<
      * @param localState stan lokalny
      * @param id identyfikator encji
      */
-    remove(localState: EntityModuleState<EntityType>, id: number): void {
+    remove(localState: AbstractModuleState<EntityType>, id: number): void {
       localState.list.splice(
         localState.list.findIndex((item: EntityType) => item.id === id),
         1
@@ -159,7 +158,11 @@ export class EntityModule<
     /**
      * Wybiera encję o podanym identyfikatorze z listy
      */
-    byId: (localState: EntityModuleState<EntityType>) => (id: number): EntityType | undefined =>
+    byId: (localState: AbstractModuleState<EntityType>) => (id: number): EntityType | undefined =>
       localState.list.find(entity => entity.id === id)
   };
+
+  constructor(protected resource: ResourceType) {
+  }
+
 }

@@ -26,9 +26,9 @@ import ComponentLocalPaginationTable from '@/components/LocalPaginationTable';
 import { REMOVE_FAVORITE } from '@/constants';
 import { listByIdsMixin } from '@/mixins/listByIds';
 import store from '@/store/store';
-import { findCharacterLastEpisodeName, getFavorites } from '@/utils';
+import { findCharacterLastEpisodeName } from '@/utils';
 import Tabs from '../../components/Tabs.vue';
-import { LocalStorage } from '../../enums/localStorage.enum';
+import { LocalStorage } from '@/enums/localStorage.enum';
 
 // @vuese
 // Ulubione postacie

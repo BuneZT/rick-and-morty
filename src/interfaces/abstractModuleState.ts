@@ -2,15 +2,15 @@
  * Interfejs stanu modułu encji
  *
  * @export
- * @interface EntityModuleState
+ * @interface AbstractModuleState
  * @template EntityType
  */
-export interface EntityModuleState<EntityType> {
+export interface AbstractModuleState<EntityType> {
   /**
    * Lista encji
    *
    * @type {EntityType[]}
-   * @memberof EntityModuleState
+   * @memberof AbstractModuleState
    */
   list: EntityType[];
 
@@ -18,7 +18,7 @@ export interface EntityModuleState<EntityType> {
    * Liczba encji
    *
    * @type {number}
-   * @memberof EntityModuleState
+   * @memberof AbstractModuleState
    */
   count: number;
 
@@ -26,7 +26,7 @@ export interface EntityModuleState<EntityType> {
    * Liczba stron
    *
    * @type {number}
-   * @memberof EntityModuleState
+   * @memberof AbstractModuleState
    */
   pages: number;
 
@@ -34,7 +34,7 @@ export interface EntityModuleState<EntityType> {
    * Idki encji do pobrania
    *
    * @type {number[]}
-   * @memberof EntityModuleState
+   * @memberof AbstractModuleState
    */
   ids: number[];
 }

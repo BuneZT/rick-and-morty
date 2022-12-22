@@ -1,15 +1,15 @@
 /**
- * Interfejs konstruktora EntityResource
+ * Interfejs konstruktora AbstractResource
  *
  * @export
- * @interface EntityResourceNames
+ * @interface AbstractResourceNames
  */
-export interface EntityResourceNames {
+export interface AbstractResourceNames {
   /**
    * Nazwa akcji do pobrania pojedynczej encji
    *
    * @type {string}
-   * @memberof EntityResourceNames
+   * @memberof AbstractResourceNames
    */
   entityName: string;
 
@@ -17,7 +17,7 @@ export interface EntityResourceNames {
    * Nazwa akcji do pobrania listy encji
    *
    * @type {string}
-   * @memberof EntityResourceNames
+   * @memberof AbstractResourceNames
    */
   listName?: string;
 
@@ -25,7 +25,7 @@ export interface EntityResourceNames {
    * Nazwa filtru listy
    *
    * @type {string}
-   * @memberof EntityResourceNames
+   * @memberof AbstractResourceNames
    */
   filterName?: string;
 
@@ -33,7 +33,7 @@ export interface EntityResourceNames {
    * Nazwa listy filtrującej po id
    *
    * @type {string}
-   * @memberof EntityResourceNames
+   * @memberof AbstractResourceNames
    */
   listByIdsName?: string;
 }

@@ -1,4 +1,4 @@
-import { EntityResourceNames } from '@/interfaces/entityResourceNames';
+import { AbstractResourceNames } from '@/interfaces/entityResourceNames';
 import { Filter } from '@/interfaces/filter';
 import { ListResponse } from '@/interfaces/list';
 import { VariableType } from 'json-to-graphql-query';
@@ -10,11 +10,11 @@ import { Resource } from './resource';
  *
  * @export
  * @abstract
- * @class EntityResource
+ * @class AbstractResource
  * @extends {Resource}
  * @template EntityType
  */
-export abstract class EntityResource<EntityType> extends Resource {
+export abstract class AbstractResource<EntityType> extends Resource {
   protected entityName: string;
 
   /**
@@ -22,7 +22,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    *
    * @protected
    * @type {string}
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   protected listQueryName: string;
 
@@ -30,7 +30,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * Zmienne zapytania o listę
    *
    * @protected
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   protected listVariables: any;
 
@@ -38,7 +38,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * Argumenty zapytania o listę
    *
    * @protected
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   protected listArgs: any = FilterArgs;
 
@@ -47,7 +47,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    *
    * @protected
    * @type {*}
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   protected listByIdsName: any;
 
@@ -57,7 +57,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * @protected
    * @abstract
    * @type {*}
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   protected abstract listFields: any;
 
@@ -67,7 +67,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * @param {Filter} filters
    * @param {boolean} [preventLoader=false]
    * @returns {Promise<ListResponse<EntityType>>}
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   public list(filters: Filter, preventLoader = false): Promise<ListResponse<EntityType>> {
     const query = this.prepareOptions({
@@ -94,7 +94,7 @@ export abstract class EntityResource<EntityType> extends Resource {
    * @param {number[]} ids
    * @param {boolean} [preventLoader=false]
    * @return {*}  {Promise<EntityType[]>}
-   * @memberof EntityResource
+   * @memberof AbstractResource
    */
   public listByIds(ids: number[], preventLoader = false): Promise<EntityType[]> {
     const query = this.prepareOptions({
@@ -109,12 +109,12 @@ export abstract class EntityResource<EntityType> extends Resource {
     return this.query({ query, variables: { ids } }, this.listByIdsName, preventLoader);
   }
 
-  constructor({
-    entityName,
-    listName = entityName + 's',
-    listByIdsName = entityName + 'sByIds',
-    filterName
-  }: EntityResourceNames) {
+  protected constructor({
+                          entityName,
+                          listName = entityName + 's',
+                          listByIdsName = entityName + 'sByIds',
+                          filterName
+                        }: AbstractResourceNames) {
     super();
     this.entityName = entityName;
     this.listQueryName = listName;

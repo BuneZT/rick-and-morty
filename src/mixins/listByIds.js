@@ -1,7 +1,6 @@
 import { mapState } from 'vuex';
 
 import store from '@/store/store';
-import { notificationsMixin } from './notifications';
 
 /**
  * Mixin listy encji po id
@@ -13,13 +12,10 @@ import { notificationsMixin } from './notifications';
  * @export
  * @param {*} moduleName - nazwa modułu store
  * @param {Object} messages - obiekt z wiadomościami do wyświetlenia po wykonaniu akcji i w przypadku niepowodzenia
- * @param {string} messages.listError - wiadomość w przypadku niepowodzenia przy pobieraniu listy
- * @param {string} messages.listNotFound - wiadomość w przypadku nie znalezienia listy
  * @returns {Object} mixin
  */
-export function listByIdsMixin(moduleName, messages, ids) {
+export function listByIdsMixin(moduleName, messages) {
   return {
-    mixins: [notificationsMixin],
     /**
      * Dane modułu
      *

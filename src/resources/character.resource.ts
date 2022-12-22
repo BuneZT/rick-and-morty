@@ -1,14 +1,14 @@
 import { Character } from '@/interfaces/character';
-import { EntityResource } from './entity.resource';
+import { AbstractResource } from './abstractResource';
 
 /**
  * Resource postaci
  *
  * @export
  * @class CharacterResource
- * @extends {EntityResource<Character>}
+ * @extends {AbstractResource<Character>}
  */
-export class CharacterResource extends EntityResource<Character> {
+export class CharacterResource extends AbstractResource<Character> {
   public listFields = {
     id: true,
     name: true,

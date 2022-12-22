@@ -1,4 +1,4 @@
-import { ApolloQueryResult, DocumentNode, FetchResult, gql, MutationOptions, QueryOptions } from 'apollo-boost';
+import { ApolloQueryResult, DocumentNode, FetchResult, gql, QueryOptions } from 'apollo-boost';
 import { jsonToGraphQLQuery } from 'json-to-graphql-query';
 
 import { apolloClient } from '@/apollo';
@@ -25,18 +25,6 @@ export class Resource {
     return this.makeRequest(apolloClient.query(options), field, preventLoader);
   }
 
-  /**
-   * Wykonuje mutację
-   *
-   * @param {MutationOptions} options
-   * @param {string} [field]
-   * @returns {Promise<any>}
-   * @memberof Resource
-   */
-  public mutation(options: MutationOptions, field?: string): Promise<any> {
-    options.fetchPolicy = 'no-cache';
-    return this.makeRequest(apolloClient.mutate(options), field);
-  }
 
   /**
    * Transformuje obiekt na zapytanie GQL

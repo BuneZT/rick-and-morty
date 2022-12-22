@@ -1,7 +1,6 @@
 import { mapState } from 'vuex';
 
 import store from '@/store/store';
-import { notificationsMixin } from './notifications';
 import { tryParseInt } from '@/utils';
 
 /**
@@ -20,7 +19,6 @@ import { tryParseInt } from '@/utils';
  */
 export function listMixin(moduleName, messages) {
   return {
-    mixins: [notificationsMixin],
     /**
      * Dane modułu
      *
@@ -30,18 +28,6 @@ export function listMixin(moduleName, messages) {
       return { moduleName };
     },
     methods: {
-      /**
-       * Przeładowuje listę
-       *
-       * @param {*} pagination
-       */
-      reloadList(pagination) {
-        this.$store.dispatch(`${moduleName}/list`, pagination).catch(err =>
-          store.dispatch('notifyError', {
-            title: err.message.includes('404') ? messages.listNotFound : messages.listError
-          })
-        );
-      }
     },
     computed: {
       ...mapState({
